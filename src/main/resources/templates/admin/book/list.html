@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+    <h3>List of Books are </h3>
+    <p th:text="${message}"/>
+    <table class="table">
+        <th>S.No</th>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Category</th>
+        <th>Operations</th>
+
+        <!-- Looping Thymleaf Style -->
+        <tr th:each="book,iterationStatus:${books}">
+            <td th:text="${iterationStatus.count}">1</td>
+            <td th:text="${book.isbn}">Group05</td>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.description}"></td>
+            <td th:text="${book.price}"></td>
+            <td th:text="${book.discount}"></td>
+            <td th:tex="${book.category}"></td>
+            <td><a th:href="@{/admin/book/edit/{id}(id=${book.id})}">
+                Edit
+            </a>  |
+                <a th:href="@{/admin/book/delete/{id}(id=${book.id})}">
+                Delete
+            </a> </td>
+        </tr>
+    </table>
+</body>
+</html>
