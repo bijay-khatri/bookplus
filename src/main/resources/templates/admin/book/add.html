@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{css/app.css}" />
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>BookPlus - Add Book</h1>
+<form action="#" th:action="@{/book/add}" th:object="${book}" method="post">
+
+    <label for="name">name</label>
+    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name"/>
+
+    <label for="name">description</label>
+    <textarea th:field="*{description}" class="form-control" id="description" placeholder="Description"/>
+
+    <input type="hidden" th:field="*{id}"/>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+</body>
+</html>
