@@ -10,5 +10,5 @@ Project Members
 2. Rishikesh Mandal
 3. Ghanshyam Pathak
 4. Neha Bansal
-5. 
-6.
+5. Oriyon Lema  
+6. PurevSuren Minjuur
