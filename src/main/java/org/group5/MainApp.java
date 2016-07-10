@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookplusApplication {
+public class MainApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookplusApplication.class, args);
+		SpringApplication.run(MainApp.class, args);
 	}
 }

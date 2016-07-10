@@ -18,4 +18,9 @@ public class TestController {
     public String test(){
         return "index";
     }
+
+    @RequestMapping("/test/**")
+    public String anything(){
+        return "redirect:/";
+    }
 }
