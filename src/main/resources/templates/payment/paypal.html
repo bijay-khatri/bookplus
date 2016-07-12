@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Paypal with Spring MVC</title>
+</head>
+<body>
+
+<form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+    <input type="hidden" name="upload" value="1"/>
+    <!--<input type="hidden" name="return" value="${initparam['returnurl']}"/>-->
+    <input type="hidden" name="return" value="http://localhost:8282/payment/success"/>
+    <input type="hidden" name="cmd" value="_cart"/>
+    <input type="hidden" name="business" value="bansalneha2104-facilitator@gmail.com"/>
+    <!--/*@thymesVar id="business" type=""*/-->
+ <!-- <input type="hidden" th:text="${@environment.getProperty('business')}"/>-->
+
+
+    <tr th:each="books,iterationStatus:${session.cart}">
+    <input type="hidden" th:name="${'item_name_'+iterationStatus.count}" th:value="${books.getProductCopy(books.getId()).getProduct().getName()}"/>
+    <input type="hidden" th:name="${'item_number_'+iterationStatus.count}" th:value="${books.getId()}"/>
+    <input type="hidden" th:name="${'amount_'+iterationStatus.count}" th:value="${books.getProductCopy(books.getId()).getProduct().getPrice()}"/>
+    <input type="hidden" th:name="${'quantity_'+iterationStatus.count}" th:value="${books.getQuantity()}"/>
+    </tr>
+   <!-- <input type="hidden" name="item_name_2" value="Product 2"/>
+    <input type="hidden" name="item_number_2" value="p2"/>
+    <input type="hidden" name="amount_2" value="3"/>
+    <input type="hidden" name="quantity_2" value="4"/>
+
+    <input type="hidden" name="item_name_3" value="Product 3"/>
+    <input type="hidden" name="item_number_3" value="p3"/>
+    <input type="hidden" name="amount_3" value="3"/>
+    <input type="hidden" name="quantity_3" value="2"/>-->
+
+    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
+</form>
+
+</body>
+</html>
