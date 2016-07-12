@@ -13,19 +13,19 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address {
 
-   // @NotBlank
+   @NotBlank
     private String street;
 
-   // @NotBlank
+   @NotBlank
     private String city;
 
-   // @NotBlank
+   @NotBlank
     private String state;
 
-   // @NotEmpty
-   // @Range(min = 1, max = 999999)
-    /*@Value("15220")
-    private int zip;*/
+   @NotBlank
+   @Range(min = 1, max = 999999)
+   @Value("15220")
+    private String zip;
 
     public Address() {
     }
@@ -54,11 +54,11 @@ public class Address {
         this.state = state;
     }
 
-    /*public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
-    }*/
+    }
 }
