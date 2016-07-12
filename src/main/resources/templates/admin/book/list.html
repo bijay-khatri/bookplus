@@ -20,24 +20,24 @@
             <th>Description</th>
             <th>Price</th>
             <th>Discount</th>
-           <!-- <th>Category</th>-->
+            <!-- <th>Category</th>-->
             <th>Operations</th>
 
             <!--&lt;!&ndash; Looping Thymleaf Style &ndash;&gt;-->
             <!--<tr th:each="book,iterationStatus:${books}">-->
-                <!--<td th:text="${iterationStatus.count}">1</td>-->
-                <!--<td th:text="${book.isbn}">Group05</td>-->
-                <!--<td th:text="${book.name}"></td>-->
-                <!--<td th:text="${book.description}"></td>-->
-                <!--<td th:text="${book.price}"></td>-->
-                <!--<td th:text="${book.discount}"></td>-->
-                <!--<td th:text="${book.category.name}"></td>-->
-                <!--<td><a th:href="@{/admin/book/edit/{id}(id=${book.id})}">-->
-                    <!--Edit-->
-                <!--</a>  |-->
-                    <!--<a th:href="@{/admin/book/delete/{id}(id=${book.id})}">-->
-                        <!--Delete-->
-                    <!--</a> </td>-->
+            <!--<td th:text="${iterationStatus.count}">1</td>-->
+            <!--<td th:text="${book.isbn}">Group05</td>-->
+            <!--<td th:text="${book.name}"></td>-->
+            <!--<td th:text="${book.description}"></td>-->
+            <!--<td th:text="${book.price}"></td>-->
+            <!--<td th:text="${book.discount}"></td>-->
+            <!--<td th:text="${book.category.name}"></td>-->
+            <!--<td><a th:href="@{/admin/book/edit/{id}(id=${book.id})}">-->
+            <!--Edit-->
+            <!--</a>  |-->
+            <!--<a th:href="@{/admin/book/delete/{id}(id=${book.id})}">-->
+            <!--Delete-->
+            <!--</a> </td>-->
             <!--</tr>-->
             <tr data-ng-repeat="book in bookCtrl.books">
                 <td>{{$index+1}}</td>
@@ -50,6 +50,7 @@
                     <a href="/admin/book/edit/{{book.id}}">Edit</a> |
                     <a href="#" ng-click="bookCtrl.deleteBook(book.id)">Delete</a>
                 </td>
+                <td><a href="/ShoppingCart/addToCart/{{book.id}}">Add to cart</a> </td>
             </tr>
         </table>
     </div>

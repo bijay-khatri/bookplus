@@ -1,9 +1,6 @@
 package org.group5.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by Bijay on 7/9/2016.
@@ -14,9 +11,9 @@ public class ProductCopy {
     @Id
     @GeneratedValue
     private long id;
-
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL)
     private Product product;
+
 
     public ProductCopy() {
     }
@@ -35,5 +32,24 @@ public class ProductCopy {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductCopy that = (ProductCopy) o;
+
+        if (id != that.id) return false;
+        return product != null ? product.equals(that.product) : that.product == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (product != null ? product.hashCode() : 0);
+        return result;
     }
 }
