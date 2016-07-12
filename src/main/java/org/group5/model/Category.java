@@ -22,16 +22,15 @@ public class Category {
     @NotEmpty @Lob
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "category_id")
-    private Set<Product> products = new HashSet<>();
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="category",cascade = CascadeType.ALL)
+    private Set<Product> products = new HashSet<>(0);
 
 
     public long getId() {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -60,8 +59,12 @@ public class Category {
     }
 
     public void addProduct(Product product){
-        product.setCategory(this);
+        //product.setCategory(this);
         this.products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        this.products.remove(product);
     }
 
     public Category(String name, String description) {

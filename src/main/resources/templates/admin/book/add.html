@@ -10,20 +10,19 @@
 <body>
 <div class="container">
     <div class="col-md-8 col-md-offset-2">
-        <h1>BookPlus - Add Book</h1>
+        <h1>Add Book</h1>
 
+        <h3 th:text="${message}">Message</h3>
 
-        <form action="#" th:action="@{/admin/book/add}" th:object="${book}" method="post">
-
+        <form action="#" th:action="@{/admin/book/add}" th:object="${book}" method="post" enctype="multipart/form-data">
             <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
             </div>
             <label>Category</label>
             <select th:field="*{category}">
-                <div>
+                    <option disabled="true" selected="selected" value="">Select</option>
                     <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-                </div>
-                     </select>
+            </select>
 
             <label for="name">ISBN</label>
             <input type="text" th:field="*{isbn}" class="form-control" id="isbn" placeholder="ISBN"/>
@@ -41,17 +40,18 @@
             <label for="name">Discount</label>
             <input type="text"  th:field="*{discount}" class="form-control" id="discount" placeholder="Discount"/>
 
-            <!--<label for="status">Status</label>-->
-            <!--<select th:field="*{status}" id="status">-->
-                <!--<option value="active">active</option>-->
-                <!--<option value="inactive">inactive</option>-->
-            <!--</select>-->
+            <label for="quantity">Quantity In Stock</label>
+            <input type="text"  th:field="*{quantity}" class="form-control" id="quantity" placeholder="Quantity"/>
+
+            <label for="status">Status</label>
+            <select th:field="*{status}" id="status">
+                <option th:each="stat:${allStatus}" th:value="${stat}" th:text="${stat.toString().toLowerCase()}" />
+            </select>
 
             <input type="hidden" th:field="*{id}"/>
-            <button type="submit" class="btn btn-success">Add</button>
+           <button type="submit" class="btn btn-success">Add</button>
         </form>
-
-    </div>
+        </div>`
 </div>
 </body>
 </html>

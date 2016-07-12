@@ -1,38 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-ng-app="bookPlus">
 <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link th:href="@{https://fonts.googleapis.com/css?family=Varela+Round}" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" th:href="@{/css/app.css}"/>
     <title>Title</title>
 </head>
 <body>
-    <h3>List of Books are </h3>
-    <p th:text="${message}"/>
-    <table class="table">
-        <th>S.No</th>
-        <th>ISBN</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Discount</th>
-        <th>Category</th>
-        <th>Operations</th>
+<div class="container">
+    <div class="col-md-12" data-ng-controller="BookController as bookCtrl"
+         th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+        <h3>List of Books are </h3>
+        <p th:text="${message}"/>
+        <table class="table">
+            <th>S.No</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Discount</th>
+           <!-- <th>Category</th>-->
+            <th>Operations</th>
 
-        <!-- Looping Thymleaf Style -->
-        <tr th:each="book,iterationStatus:${books}">
-            <td th:text="${iterationStatus.count}">1</td>
-            <td th:text="${book.isbn}">Group05</td>
-            <td th:text="${book.name}"></td>
-            <td th:text="${book.description}"></td>
-            <td th:text="${book.price}"></td>
-            <td th:text="${book.discount}"></td>
-            <td th:tex="${book.category}"></td>
-            <td><a th:href="@{/admin/book/edit/{id}(id=${book.id})}">
-                Edit
-            </a>  |
-                <a th:href="@{/admin/book/delete/{id}(id=${book.id})}">
-                Delete
-            </a> </td>
-        </tr>
-    </table>
+            <!--&lt;!&ndash; Looping Thymleaf Style &ndash;&gt;-->
+            <!--<tr th:each="book,iterationStatus:${books}">-->
+                <!--<td th:text="${iterationStatus.count}">1</td>-->
+                <!--<td th:text="${book.isbn}">Group05</td>-->
+                <!--<td th:text="${book.name}"></td>-->
+                <!--<td th:text="${book.description}"></td>-->
+                <!--<td th:text="${book.price}"></td>-->
+                <!--<td th:text="${book.discount}"></td>-->
+                <!--<td th:text="${book.category.name}"></td>-->
+                <!--<td><a th:href="@{/admin/book/edit/{id}(id=${book.id})}">-->
+                    <!--Edit-->
+                <!--</a>  |-->
+                    <!--<a th:href="@{/admin/book/delete/{id}(id=${book.id})}">-->
+                        <!--Delete-->
+                    <!--</a> </td>-->
+            <!--</tr>-->
+            <tr data-ng-repeat="book in bookCtrl.books">
+                <td>{{$index+1}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.name}}</td>
+                <td>{{book.description}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.discount}}</td>
+                <td>
+                    <a href="/admin/book/edit/{{book.id}}">Edit</a> |
+                    <a href="#" ng-click="bookCtrl.deleteBook(book.id)">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>

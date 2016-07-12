@@ -1,10 +1,13 @@
 package org.group5.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.group5.model.enums.Status;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,24 +28,41 @@ public abstract class Product {
     @Lob @NotEmpty(message="Description may not be empty")
     private String description;
 
-   // @Lob
-   // private byte[] image;
+    @Lob
+    private byte[] image;
 
     @DecimalMin(value = "0")
     private Double price;
 
-    @DecimalMin(value = "0")
+    @DecimalMin(value = "0", message = "Minimum discount should be at least 0.0")
+    @DecimalMax(value = "100", message = "Maximum discount should be at most 100.0")
     private Double discount;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private List<ProductCopy> productCopies = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    @NotNull
+    @JsonIgnore
     private Category category;
+
+    @Transient
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public Product(){}
 
     public Product(String name, String description) {
@@ -74,13 +94,13 @@ public abstract class Product {
         this.description = description;
     }
 
-//    public byte[] getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(byte[] image) {
-//        this.image = image;
-//    }
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public Double getPrice() {
         return price;
@@ -119,7 +139,13 @@ public abstract class Product {
     }
 
     public void setCategory(Category category) {
+        category.addProduct(this);
         this.category = category;
+    }
+
+    public void removeCategory(Category category){
+        this.category = null;
+        category.removeProduct(this);
     }
 
     public void addProductCopy(ProductCopy copy){

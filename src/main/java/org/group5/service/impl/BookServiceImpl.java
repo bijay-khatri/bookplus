@@ -2,6 +2,7 @@ package org.group5.service.impl;
 
 import org.group5.dao.BookDao;
 import org.group5.model.Book;
+import org.group5.model.ProductCopy;
 import org.group5.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,15 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
     @Override
     public void add(Book book) {
+        int quantity = book.getQuantity();
+
+        /* add the product copies */
+        if(quantity > 0) {
+            while (quantity-- > 0) {
+                ProductCopy copy = new ProductCopy();
+                book.addProductCopy(copy);
+            }
+        }
         bookDao.save(book);
     }
 
@@ -46,4 +56,6 @@ public class BookServiceImpl implements BookService {
         bookDao.findAll().forEach(item -> result.add(item));
         return result;
     }
+
+
 }
