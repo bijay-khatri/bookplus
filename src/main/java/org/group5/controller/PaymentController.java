@@ -65,7 +65,7 @@ public class PaymentController {
         Account account = new Account();
         Address address = new Address();
         address.setCity("city");
-        //address.setZip(23);
+        address.setZip("15220");
         account.setShippingAddress(address);
         accountService.add(account);
         for (ShoppingCartController.Item item:itemList){
