@@ -10,34 +10,39 @@
 <body>
 <div class="ctnr" th:fragment="adminList">
     <div class="col-md-12">
-        <h3>Admin List</h3>
-        <p th:text="${message}"/>
-        <table class="table">
-            <th>S.No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Enabled</th>
-            <th>Operations</th>
-            <tr th:each="admin,iterationStatus:${admins}">
-                <td th:text="${iterationStatus.count}">1</td>
-                <td th:text="${admin.firstName}">Group05</td>
-                <td th:text="${admin.lastName}"></td>
-                <td th:text="${admin.email}"></td>
-                <td th:text="${admin.enabled}"></td>
+        <header>
+            <h1>Admins</h1>
+        </header>
+        <main>
+            <p th:text="${message}"/>
+            <table class="table">
+                <th>S.No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>Operations</th>
+                <tr th:each="admin,iterationStatus:${admins}">
+                    <td th:text="${iterationStatus.count}">1</td>
+                    <td th:text="${admin.firstName}">Group05</td>
+                    <td th:text="${admin.lastName}"></td>
+                    <td th:text="${admin.email}"></td>
+                    <td th:text="${admin.enabled}"></td>
 
 
 
-                <td th:if="${currentAdmin.id != admin.id}">
-                    <a th:href="@{/admin/edit/{id}(id=${admin.id})}">
-                    Enable
-                    </a>  |
-                    <a th:href="@{/admin/delete/{id}(id=${admin.id})}">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        </table>
+                    <td th:if="${currentAdmin.id != admin.id}">
+                        <a th:href="@{/admin/edit/{id}(id=${admin.id})}">
+                            Enable
+                        </a>  |
+                        <a th:href="@{/admin/delete/{id}(id=${admin.id})}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </main>
+
     </div>
 </div>
 </body>
