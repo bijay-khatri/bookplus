@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-ng-app="bookPlus">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link th:href="@{https://fonts.googleapis.com/css?family=Varela+Round}" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" th:href="@{/css/app.css}"/>
+    <title>BookPlus - Admin Category</title>
+</head>
+<body>
+<div class="container" data-ng-controller="BookController as categoryCtrl"
+     th:attr="ng-init='categoryCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+    <div class="col-md-12">
+        <h3>Book's  Categories</h3>
+
+        <p th:text="${message}"/>
+        <table class="table">
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>State</th>
+            <th>Operations</th>
+
+            <!-- Looping Thymleaf Style -->
+            <!--<tr th:each="category,iterationStatus:${categories}">-->
+                <!--<td th:text="${category.id}"></td>-->
+                <!--<td th:text="${category.name}"></td>-->
+                <!--<td th:text="${category.description}"></td>-->
+
+                <!--<td><a th:href="@{/admin/category/edit/{id}(id=${category.id})}">-->
+                    <!--Edit-->
+                <!--</a>  |-->
+                    <!--<a th:href="@{/admin/category/delete/{id}(id=${category.id})}">-->
+                        <!--Delete-->
+                    <!--</a> </td>-->
+            <!--</tr>-->
+            <tr data-ng-repeat="category in categoryCtrl.categories">
+                <td>{{$index+1}}</td>
+                <td>{{category.name}}</td>
+                <td>{{category.description}}</td>
+                <td>{{category.state}}</td>
+                <td>
+                    <a href="/admin/category/edit/{{category.id}}">Edit</a> |
+                    <a href="#" ng-click="categoryCtrl.deleteCategory(category.id)">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-success btn-large" th:href="@{/admin/category/add}">Add New</a>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

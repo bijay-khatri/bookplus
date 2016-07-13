@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Category</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{css/app.css}" />
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>BookPlus - Add Category</h1>
+
+
+        <form action="#" th:action="@{/admin/category/add}" th:object="${category}" method="post">
+
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+            </div>
+
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="category"/>
+
+            <label for="name">Description</label>
+            <input type="text" th:field="*{description}" class="form-control" id="category" placeholder="Description"/>
+
+            <input type="radio" th:name="valid" th:field="*{state}"  value="true" />valid
+            <input type="radio" th:name="valid" th:field="*{state}" value="false" /> Invalid
+
+            <input type="hidden" th:field="*{id}"/>
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

@@ -57,7 +57,7 @@ public class BookController {
 
         else {
             bookService.add(book);
-            redirect.addFlashAttribute("message", "Book sucessfully added");
+            redirect.addFlashAttribute("message", "Book successfully added");
         }
 
         return view;

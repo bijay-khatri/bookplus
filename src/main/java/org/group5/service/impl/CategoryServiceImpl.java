@@ -10,17 +10,40 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Bijay on 7/10/2016.
+ * Created by Rishi on 7/10/2016.
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
+
     @Override
     public Set<Category> getAll() {
-        Set<Category> result = new HashSet<>();
-        categoryDao.findAll().forEach(item -> result.add(item));
+        Set<Category> result= new HashSet<>();
+        categoryDao.findAll().forEach(item->result.add(item));
         return result;
     }
+
+    @Override
+    public void add(Category category) {
+        categoryDao.save(category);
+    }
+
+    @Override
+    public void delete(long id) {
+        categoryDao.delete(id);
+
+    }
+
+    @Override
+    public Category findBy(long id) {
+       return categoryDao.findOne(id);
+    }
+
+    @Override
+    public void update(Category category) {
+       categoryDao.save(category);
+    }
+
 }

@@ -139,8 +139,18 @@ public abstract class Product {
     }
 
     public void setCategory(Category category) {
-        category.addProduct(this);
+        //prevent endless loop
+        if(sameAsFormer(category)) return;
+
+        if(category !=null)
+            category.addProduct(this);
+
+        Category temp = this.category;
         this.category = category;
+
+        if(temp !=null){
+            temp.removeProduct(this);
+        }
     }
 
     public void removeCategory(Category category){
@@ -151,6 +161,10 @@ public abstract class Product {
     public void addProductCopy(ProductCopy copy){
         copy.setProduct(this);
         this.productCopies.add(copy);
+    }
+
+    private boolean sameAsFormer(Category newCategory) {
+        return category==null? newCategory == null : category.equals(newCategory);
     }
 
 }
