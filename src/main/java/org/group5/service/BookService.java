@@ -1,6 +1,7 @@
 package org.group5.service;
 
 import org.group5.model.Book;
+import org.group5.model.Product;
 
 import java.util.Set;
 
@@ -16,6 +17,8 @@ public interface BookService {
     void delete(long id);
     Book findById(long id);
     Set<Book> getAll();
+
+    int getProductCopies(Product p);
 
 
 }

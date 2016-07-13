@@ -2,6 +2,7 @@ package org.group5.service.impl;
 
 import org.group5.dao.BookDao;
 import org.group5.model.Book;
+import org.group5.model.Product;
 import org.group5.model.ProductCopy;
 import org.group5.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,11 @@ public class BookServiceImpl implements BookService {
         Set<Book> result = new HashSet<>();
         bookDao.findAll().forEach(item -> result.add(item));
         return result;
+    }
+
+    @Override
+    public int getProductCopies(Product p) {
+        return bookDao.getProductCopies(p);
     }
 
 
