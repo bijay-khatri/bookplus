@@ -1,5 +1,6 @@
 package org.group5.controller;
 
+import org.group5.Utility;
 import org.group5.model.Book;
 import org.group5.model.enums.Status;
 import org.group5.service.BookService;
@@ -8,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -46,8 +45,12 @@ public class BookController {
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String addBookSuccess(Model model, @Valid Book book, BindingResult result, RedirectAttributes redirect){
+    public String addBookSuccess(Model model, @RequestParam("myFile") MultipartFile file, @Valid Book book, BindingResult result, RedirectAttributes redirect){
         String view = "redirect:" + "/admin/dashboard";
+
+        //delegate uploads
+        String filename = Utility.uploadImage(file);
+        if(!filename.isEmpty())book.setImage(filename);
 
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
@@ -76,11 +79,6 @@ public class BookController {
         book.setQuantity(book.getProductCopies().size());
         model.addAttribute("book", book);
         return "/admin/view/addBook";
-    }
-
-    @RequestMapping(value="/edit/{id}",method = RequestMethod.POST)
-    public String editBookSuccess(@PathVariable int id, Model model, @Valid Book book, BindingResult result, RedirectAttributes ra){
-        return addBookSuccess(model,book, result, ra);
     }
 
     @ModelAttribute("allStatus")

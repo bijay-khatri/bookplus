@@ -50,6 +50,9 @@
                         <option th:each="stat:${allStatus}" th:value="${stat}" th:text="${stat.toString().toLowerCase()}" />
                     </select>
 
+                    <label for="image"></label>
+                    <input type="file" name="myFile" id="image"/>
+
                     <input type="hidden" th:field="*{id}"/>
                     <button type="submit" class="btn btn-success">Add</button>
                 </form>

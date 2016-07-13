@@ -28,8 +28,7 @@ public abstract class Product {
     @Lob @NotEmpty(message="Description may not be empty")
     private String description;
 
-    @Lob
-    private byte[] image;
+    private String image;
 
     @DecimalMin(value = "0")
     private Double price;
@@ -94,11 +93,11 @@ public abstract class Product {
         this.description = description;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
