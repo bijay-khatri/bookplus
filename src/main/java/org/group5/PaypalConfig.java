@@ -17,17 +17,17 @@ import org.slf4j.LoggerFactory;
 public class PaypalConfig {
 
     private static Logger logger = LoggerFactory.getLogger(PaypalConfig.class);
-    @Value("${project.title}")
+    //@Value("${project.title}")
     private String authToken;
 
-    @Value("${posturl}")
+    //@Value("${posturl}")
 
     private String posturl;
 
-    @Value("${business}")
+    //@Value("${business}")
     private String business;
 
-     @Value("${returnurl}")
+     //@Value("${returnurl}")
     private String returnurl;
     private String cancelurl;
     private String cmd;

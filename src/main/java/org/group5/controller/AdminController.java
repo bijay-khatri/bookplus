@@ -87,7 +87,7 @@ public class AdminController {
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("currentAdmin", admin);
         model.addAttribute("admins",adminService.getAll());
-        return PATH + "list";
+        return PATH +"view/admins";
     }
 
 

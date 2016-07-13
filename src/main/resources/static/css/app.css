@@ -17,6 +17,8 @@ body .ctnr{
     -webkit-box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.1);
     box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.1);
+    width: 1187px;
+    margin: auto;
 }
 body .ctnr header{
     padding: 30px;

@@ -4,6 +4,10 @@
     margin: 0;
     padding: 0;
 }
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #9a6371 inset !important;
+    -webkit-text-fill-color: #ffffff;
+}
 body{
     background: #ffffff;
 }

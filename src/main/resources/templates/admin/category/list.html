@@ -9,6 +9,7 @@
      th:attr="ng-init='categoryCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
     <header>
         <h1>Categories</h1>
+        <a class="btn btn-success btn-large" th:href="@{/admin/category/add}">Add New</a>
     </header>
     <main>
         <p th:text="${message}"/>
@@ -43,7 +44,6 @@
                 </td>
             </tr>
         </table>
-        <a class="btn btn-success btn-large" th:href="@{/admin/category/add}">Add New</a>
         </main>
 </div>
 </body>

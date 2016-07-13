@@ -42,7 +42,6 @@ public class CategoryController {
        String view="redirect:/admin/category";
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","please put correct information");
-            view = PATH+"add";
         }
         else{
             categoryService.add(category);

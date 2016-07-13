@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-ng-app="bookPlus">
+<head th:replace="admin/includes/header :: header"></head>
+<body class="main">
+
+<aside id="left" class="side col-sm-2" th:replace="admin/includes/dashboardMenu :: leftAside"></aside>
+
+<aside id="right" class="right col-sm-10">
+
+    <div class="ctnr" th:replace="admin/list :: adminList"></div>
+    <footer>
+        by WindEA
+    </footer>
+</aside>
+<div th:replace="admin/includes/scripts :: scripts"></div>
+</body>
+</html>

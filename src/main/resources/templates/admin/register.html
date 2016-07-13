@@ -10,7 +10,7 @@
 <body>
 <section id="registerSection">
     <p>Registration page</p>
-    <div class="col-md-6 col-md-offset-3" style="color:#fff">
+    <div class="registrationCtnr">
         <form action="#" th:action="@{/admin/preregister}" th:object="${admin}" method="post">
             <div class="alert" th:if="${#fields.hasErrors('*')}">
                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
@@ -46,7 +46,7 @@
             <label for="zip">ZIP </label>
             <input type="text" th:field="*{address.zip}" class="form-control" id="zip" placeholder="ZIP"/>
 
-            <button type="submit" class="btn btn-success">Start Your Job</button>
+            <button id="submit" type="submit" class="btn btn-success">Start Your Job</button>
         </form>
     </div>
 

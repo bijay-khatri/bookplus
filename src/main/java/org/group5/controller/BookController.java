@@ -55,7 +55,6 @@ public class BookController {
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
             model.addAttribute("categories", categoryService.getAll());
-            view =PATH + "add";
         }
 
         else {
