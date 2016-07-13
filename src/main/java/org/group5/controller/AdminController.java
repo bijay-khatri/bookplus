@@ -32,11 +32,11 @@ public class AdminController {
         return PATH +"index";
     }
 
-    @RequestMapping(value="/user/apply")
+    @RequestMapping(value="/apply")
     public String registerPage(@ModelAttribute Admin admin, Model model){
         if(!model.containsAttribute("admin"))
             model.addAttribute("admin", new Admin());
-        return PATH + "user/register";
+        return PATH + "register";
     }
 
     @RequestMapping(value = {"/dashboard"})
@@ -66,16 +66,19 @@ public class AdminController {
             view ="redirect:"+PATH + "login";
         }
         else {
-            session.setAttribute("admin",admin);
+            if(session.getAttribute("admin") == null)
+                session.setAttribute("admin",admin);
             redirect.addFlashAttribute("message", admin.getFirstName()+", \nWelcome Back!!");
         }
         return view;
     }
 
     @RequestMapping(value="/preregister", method= RequestMethod.POST)
-    public String getPending(@Valid Admin admin, RedirectAttributes redirect){
+    public String getPending(@Valid Admin admin, HttpSession session, RedirectAttributes redirect){
         adminService.add(admin);
         redirect.addFlashAttribute("message","Please wait for activation before using app");
+        if(session.getAttribute("admin") == null)
+            session.setAttribute("admin",admin);
         return "redirect:" + PATH  +"dashboard";
     }
 
