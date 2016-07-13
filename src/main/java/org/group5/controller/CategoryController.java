@@ -39,7 +39,7 @@ public class CategoryController {
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public String addCategorySuccess(@Valid Category category, BindingResult result, RedirectAttributes redirect){
-       String view="redirect:"+PATH +"all";
+       String view="redirect:/admin/category";
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","please put correct information");
             view = PATH+"add";
