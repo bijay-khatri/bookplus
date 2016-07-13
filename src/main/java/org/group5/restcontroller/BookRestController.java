@@ -42,7 +42,8 @@ public class BookRestController {
     }
 
     @RequestMapping("copy/{id}")
-    public void getProductCopy(@PathVariable int id){
-        bookService.findById(id);
+    public int getProductCopy(@PathVariable int id){
+        Book book = bookService.findById(id);
+        return bookService.getProductCopies(book);
     }
 }

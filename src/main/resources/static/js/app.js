@@ -10,7 +10,6 @@
         var self = this;
 
         /*********Book Only Properties ********/
-        var quantity; //quantity to hold the product copy
 
 
         /**** Initial method to set baseurl ****/
@@ -27,9 +26,19 @@
         //Load the booklist initially
         this.loadBooks = function(){
             $http.get(self.url + "api/book/all").success(function(data) {
-                    self.books = data;
 
+                    angular.forEach(data, function(value, key) {
+                        //console.log(key + ': ' + value.id);
+                        //value.quantity = value.id;
+                        $http.get(self.url + "api/book/copy/" + value.id).
+                        success(function(data){
+                            value.quantity = data;
+                        });
+                    });
+
+                self.books = data;
                 });
+
         }
 
         this.deleteBook = function(id){
@@ -42,7 +51,7 @@
         this.getBookCopy = function(bookid){
             self.quantity = bookid;
             console.log("Quantity: " + self.quantity);
-            $http.get(self.url + "api/book/copy/" + bookid).success(function(){
+            $http.get(self.url + "api/book/copy/" + bookid).success(function(data){
                //self.loadBooks();
             });
         }
@@ -52,7 +61,6 @@
         /********* CATEGORY SPECIFIC ****************/
         //Load the booklist initially
         this.loadCategories = function(){
-            console.log("I am here");
             $http.get(self.url + "api/category/all").success(function(data) {
                 self.categories = data;
 
