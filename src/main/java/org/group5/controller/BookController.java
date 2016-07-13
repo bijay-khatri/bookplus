@@ -45,12 +45,12 @@ public class BookController {
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String addBookSuccess(Model model, @RequestParam("myFile") MultipartFile file, @Valid Book book, BindingResult result, RedirectAttributes redirect){
+    public String addBookSuccess(Model model, @Valid Book book, BindingResult result, RedirectAttributes redirect){
         String view = "redirect:" + "/admin/dashboard";
 
         //delegate uploads
-        String filename = Utility.uploadImage(file);
-        if(!filename.isEmpty())book.setImage(filename);
+       // String filename = Utility.uploadImage(file);
+        //if(!filename.isEmpty())book.setImage(filename);
 
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
