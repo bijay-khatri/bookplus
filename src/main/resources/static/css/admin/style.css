@@ -119,8 +119,12 @@ body.main aside#left main{
     padding: 50px 20px;
 
 }
-body.main aside#left main .admin{
-    height: 100px;
+body.main aside#left main .admin,
+body.main aside#left main .admin div{
+    padding: 0;
+}
+body.main aside#left main .admin div.col-lg-7{
+    text-align: left;
 }
 body.main aside#left main .nav-side-menu h3{
     color: #837484;
@@ -327,4 +331,7 @@ button a{
 body {
     margin: 0px;
     padding: 0px;
+}
+.clear{
+    clear: both;
 }
