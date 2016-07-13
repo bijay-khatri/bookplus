@@ -1,24 +1,10 @@
 package org.group5.model;
 
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.math.BigDecimal;
 
 
 /**
@@ -37,7 +23,7 @@ public class Order {
     private Account account;
 
     private Date orderDate;
-    private Date deliveryDate;
+    // private Date deliveryDate;
 
     private Double totalOrderPrice = null;
 
@@ -49,10 +35,6 @@ public class Order {
 
     }
 
-    /*public Order(Account account) {
-        this.account = account;
-        this.shippingAddress = new Address(account.getAddress());
-    }*/
 
     public Address getShippingAddress() {
         return this.shippingAddress;
@@ -77,6 +59,7 @@ public class Order {
     public List<OrderLine> getOrderLineItems() {
         return this.orderLineItems;
     }
+
     public Date getOrderDate() {
         return this.orderDate;
     }
@@ -85,13 +68,13 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public Date getDeliveryDate() {
+   /* public Date getDeliveryDate() {
         return this.deliveryDate;
     }
 
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
-    }
+    }*/
 
     public Double getTotalOrderPrice() {
         return this.totalOrderPrice;
@@ -110,11 +93,12 @@ public class Order {
             if (this.totalOrderPrice == null) {
                 this.totalOrderPrice = orderLine.getPrice();
             } else {
-                this.totalOrderPrice = (this.totalOrderPrice)+(orderLine.getPrice());
+                this.totalOrderPrice = (this.totalOrderPrice) + (orderLine.getPrice());
             }
-        }}
+        }
+    }
 
-        //Update functionality also
+    //Update functionality also
     public void updateOrderLineItems() {
 
     }

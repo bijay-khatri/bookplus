@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
 import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -32,6 +34,13 @@ public class PaymentController {
     @Autowired
     private ProductCopyService cartService;
     private static String PATH = "/payment";
+
+
+    public static Date addDays(Date d, int days)
+    {
+        d.setTime(d.getTime() + days * 1000 * 60 * 60 * 24);
+        return d;
+    }
 
     @RequestMapping(value = "/payment/{paymentId}", method = RequestMethod.GET)
     public String retrievePaymentDetails(ModelMap modelMap,@PathVariable("paymentId") long paymentId) {
@@ -62,6 +71,11 @@ public class PaymentController {
        // modelMap.put("result",ps.getPaypal(request));
         List<ShoppingCartController.Item> itemList = (List<ShoppingCartController.Item>)session.getAttribute("cart");
         Order order = new Order();
+        Date now = new Date();
+        DateFormat currentDate = DateFormat.getDateInstance();
+        Date deliveryDate = addDays(now, 3);
+
+
         Account account = new Account();
         Address address = new Address();
         address.setCity("city");
@@ -73,10 +87,11 @@ public class PaymentController {
 
             orderLine.setQuantity(item.getQuantity());
             orderLine.setProduct(item.getProductCopy(item.getId()).getProduct());
+            orderLine.setDeliveryDate(deliveryDate);
             order.addOrderLineItem(orderLine);
         }
-        order.setDeliveryDate(new Date());
         order.setOrderDate(new Date());
+        //  order.setOrderDate(new Date());
         order.setAccount(account);
         orderService.add(order);
 

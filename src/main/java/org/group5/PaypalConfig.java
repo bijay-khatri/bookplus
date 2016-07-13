@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by Neha on 7/10/2016.
  */
-@Component
+
 public class PaypalConfig {
 
     private static Logger logger = LoggerFactory.getLogger(PaypalConfig.class);
