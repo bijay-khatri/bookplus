@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Quantity</title>
+</head>
+<body>
+<form action="#" th:action="@{/ShoppingCart/addToCart/{id}(id=${item.id})}" method="get">
+    <h1>Change quantity</h1>
+    <label>How many qunatity do you want?</label>
+    <input type="hidden" th:field="${item.id}"/>
+    <input name ="quantity" type="text" th:field="${item.quantity}" class="form-control"/>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+</body>
+</html>

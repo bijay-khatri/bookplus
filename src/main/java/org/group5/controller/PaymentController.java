@@ -34,8 +34,8 @@ public class PaymentController {
     private static String PATH = "/payment";
 
     @RequestMapping(value = "/payment/{paymentId}", method = RequestMethod.GET)
-    public String retrievePaymentDetails(ModelMap modelMap,@PathVariable("paymentId") long paymentId) {
-       // Account account = accountService.getAccountByPaymentId(paymentId);
+    public String retrievePaymentDetails(ModelMap modelMap, @PathVariable("paymentId") long paymentId) {
+        // Account account = accountService.getAccountByPaymentId(paymentId);
      /*   Order order=account.getOrderByOrderId(orderId);
         modelMap.put("order",order);*/
        /* PaymentType type=account.getPaymentInfo.PaymentType;
@@ -56,11 +56,12 @@ public class PaymentController {
         }
         */
     }
-    @RequestMapping(value="/payment/success",method= RequestMethod.GET)
-    public String success(ModelMap modelMap, HttpSession session,HttpServletRequest request){
+
+    @RequestMapping(value = "/payment/success", method = RequestMethod.GET)
+    public String success(ModelMap modelMap, HttpSession session, HttpServletRequest request) {
         //PaypalSuccess ps=new PaypalSuccess();
-       // modelMap.put("result",ps.getPaypal(request));
-        List<ShoppingCartController.Item> itemList = (List<ShoppingCartController.Item>)session.getAttribute("cart");
+        // modelMap.put("result",ps.getPaypal(request));
+        List<ShoppingCartController.Item> itemList = (List<ShoppingCartController.Item>) session.getAttribute("cart");
         Order order = new Order();
         Account account = new Account();
         Address address = new Address();
@@ -68,21 +69,25 @@ public class PaymentController {
         address.setZip("15220");
         account.setShippingAddress(address);
         accountService.add(account);
-        for (ShoppingCartController.Item item:itemList){
+        for (ShoppingCartController.Item item : itemList) {
             OrderLine orderLine = new OrderLine();
 
             orderLine.setQuantity(item.getQuantity());
             orderLine.setProduct(item.getProductCopy(item.getId()).getProduct());
             order.addOrderLineItem(orderLine);
+
+            cartService.delete(item.getProductCopy(item.getId()).getId());
+
         }
         order.setDeliveryDate(new Date());
         order.setOrderDate(new Date());
         order.setAccount(account);
+
         orderService.add(order);
 
-        session.setAttribute("order",order);
+        session.setAttribute("order", order);
         //System.out.println(ps.getPaypal(request).getNum_cart_items());
-        return PATH +"/success";
+        return PATH + "/success";
     }
 /*
     /*@RequestMapping(value="/paypal/{paypalId}", method= RequestMethod.POST)
@@ -104,5 +109,5 @@ public class PaymentController {
 */
 
 
-    }
+}
 

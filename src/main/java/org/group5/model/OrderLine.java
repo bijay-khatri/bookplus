@@ -17,7 +17,7 @@ public class OrderLine {
     private Long id;
     @ManyToOne
     private Product product;
-    private int quantity = 1;
+    private int quantity;
     public OrderLine() {
 
     }

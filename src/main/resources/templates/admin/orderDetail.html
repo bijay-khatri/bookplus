@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Order Deatil</title>
+</head>
+<body>
+<div>
+    <table>
+        <th>Number</th>
+        <th>Delivery Date</th>
+        <th>Sub Total</th>
+        <tr th:each="order,iterationStatus:${OrderDetail}">
+            <td th:text="${order.getId()}"></td>
+            <td th:text="${order.getDeliveryDate()}"></td>
+            <td th:text="${order.getTotalOrderPrice()}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
