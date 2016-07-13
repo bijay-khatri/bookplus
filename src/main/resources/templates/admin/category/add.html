@@ -14,7 +14,7 @@
         <h1>BookPlus - Add Category</h1>
     </header>
     <main>
-        <form action="#" th:action="@{/admin/category}" th:object="${category}" method="post">
+        <form action="#" th:action="@{/admin/category/add}" th:object="${category}" method="post">
 
             <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
