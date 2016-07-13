@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sign-Up/Admin Login Form</title>
+    ​
+    <link rel="stylesheet" href="css/login.css"/>
+    ​
+    <!--Purevsuren will do style-->
+</head>
+​
+<body>
+​
+<div class="login-form">
+    <h1>Login Form</h1>
+    ​
+    <form th:action="@{/admin/login}" method="post">
+        ​
+        <label for="username">Username: </label>
+        <input type="text" name="email" class="login" id="username" placeholder="example@abc.com"/>
+        ​
+        ​
+        <label for="password">Password: </label>
+        <input type="password" name="password" class="login" id="password" placeholder="*********"/>
+        ​
+        ​
+        <button type="submit" class="login-btn">login</button>
+        ​
+    </form>
+    ​
+</div>
+​
+-
+​
+<div class="register">
+    ​
+    <h1>Register As Admin</h1>
+    ​
+    ​
+    <form action="#" th:action="@{/admin/preregister}" th:object="${admin}" method="post">
+        ​
+        <div class="alert" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        ​
+        <label for="firstName">First Name</label>
+        <input type="text" th:field="*{firstName}" class="register-info" id="firstName" placeholder="Given Name"/>
+        <label for="lastName">Last Name</label>
+        <input type="text" th:field="*{lastName}" class="register-info" id="lastName" placeholder="Last Name"/>
+        ​
+        <label for="email">Email </label>
+        <input type="text" th:field="*{email}" class="register-info" id="email" placeholder="example@ab.cd"/>
+        ​
+        <label for="rpassword">Password: </label>
+        <input type="password" th:field="*{password}" class="register-info" id="rpassword" placeholder="*********"/>
+        ​
+        <label for="re-password">Confirm Password: </label>
+        <input type="password" class="register-info" id="re-password" placeholder="*********"/>
+        ​
+        ​
+        <!--check two passwords by JS-->
+        ​
+        ​
+        <label for="city">City</label>
+        <input type="text" th:field="*{address.city}" class="register-info" id="city" placeholder="City"/>
+        ​
+        <label for="city">State</label>
+        <input type="text" th:field="*{address.state}" class="register-info" id="state" placeholder="State"/>
+        ​
+        <label for="street">Street</label>
+        <input type="text" th:field="*{address.street}" class="register-info" id="street" placeholder="Street"/>
+        ​
+        <label for="zip">ZIP </label>
+        <input type="text" th:field="*{address.zip}" class="register-info" id="zip" placeholder="ZIP"/>
+        ​
+        ​
+        <button type="submit" class="submit-register">Start Your Job</button>
+    </form>
+    ​
+</div>
+​
+​
+​
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{css/app.css}" />
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div class="container">
+    <h1>
+        Welcome!!!
+    </h1>
+    <div class="profile">
+        <table class="table">
+            <tr>
+                <td th:text="${customer.getFirstName()} "></td>
+                <td th:text="${customer.getLastName()}"></td>
+                <td th:text="${customer.address.getStreet()}"></td>
+                <td th:text="${customer.address.getCity()}"></td>
+                <td th:text="${customer.address.getState()}"></td>
+                <td th:text="${customer.address.getZip()}"></td>
+            </tr>
+        </table>
+    </div>
+    <a href="details.html" th:href="@{/customer/setting/{id}(id=${customer.id})}">
+        Edit
+    </a>
+    ​
+    <a th:href="@{/}"><br/>
+        Logout
+    </a>
+</div>
+</body>
+</html>

@@ -10,6 +10,46 @@
 <body>
 <section id="registerSection">
     <p>Registration page</p>
+    <div class="col-md-6 col-md-offset-3" style="color:#fff">
+        <form action="#" th:action="@{/admin/preregister}" th:object="${admin}" method="post">
+            <div class="alert" th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+            </div>
+            ​
+            <label for="firstName">First Name</label>
+            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Given Name"/>
+            <label for="lastName">Last Name</label>
+            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name"/>
+            ​
+            <label for="email">Email </label>
+            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="example@ab.cd"/>
+            ​
+            <label for="rpassword">Password: </label>
+            <input type="password" th:field="*{password}" class="form-control" id="rpassword" placeholder="*********"/>
+            ​
+            <label for="re-password">Confirm Password: </label>
+            <input type="password" class="form-control" id="re-password" placeholder="*********"/>
+            ​
+            ​
+            <!--check two passwords by JS-->
+            ​
+            ​
+            <label for="city">City</label>
+            <input type="text" th:field="*{address.city}" class="form-control" id="city" placeholder="City"/>
+            ​
+            <label for="city">State</label>
+            <input type="text" th:field="*{address.state}" class="form-control" id="state" placeholder="State"/>
+            ​
+            <label for="street">Street</label>
+            <input type="text" th:field="*{address.street}" class="form-control" id="street" placeholder="Street"/>
+            ​
+            <label for="zip">ZIP </label>
+            <input type="text" th:field="*{address.zip}" class="form-control" id="zip" placeholder="ZIP"/>
+
+            <button type="submit" class="btn btn-success">Start Your Job</button>
+        </form>
+    </div>
+
 </section>
 </body>
 </html>

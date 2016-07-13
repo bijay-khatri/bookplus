@@ -5,3 +5,6 @@ INSERT INTO Category(name,description,state)  VALUES ("Category-02","Description
 INSERT INTO Category(name,description,state)  VALUES ("Category-03","Description-Category-03",1);
 INSERT INTO Category(name,description,state)  VALUES ("Category-04","Description-Category-04",0);
 INSERT INTO Category(name,description,state)  VALUES ("Category-05","Description-Category-05",0);
+
+
+INSERT INTO user(first_name, last_name,email,password,role,enabled) VALUES ('test','ltest','admin','admin123','ROLE_ADMIN',1);

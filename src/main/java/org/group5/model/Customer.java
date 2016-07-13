@@ -1,5 +1,6 @@
 package org.group5.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -7,6 +8,7 @@ import javax.persistence.OneToOne;
  * Created by Example on 7/11/2016.
  */
 @Entity
+@DiscriminatorValue("ROLE_USER")
 public class Customer extends Person{
 
     @OneToOne

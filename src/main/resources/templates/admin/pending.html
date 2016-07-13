@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin-Pending</title>
+</head>
+​
+<body>
+​
+Hi
+<td th:text="${admin.getFirstName()}"></td>,
+Your registration is under verification, you will get email on
+<td th:text="${admin.getEmail()}"></td>
+right after you get approved.
+Thank You!!
+</body>
+</html>
