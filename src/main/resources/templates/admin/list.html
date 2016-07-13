@@ -25,12 +25,17 @@
                 <td th:text="${admin.lastName}"></td>
                 <td th:text="${admin.email}"></td>
                 <td th:text="${admin.enabled}"></td>
-                <td><a th:href="@{/admin/edit/{id}(id=${admin.id})}">
+
+
+
+                <td th:if="${currentAdmin.id != admin.id}">
+                    <a th:href="@{/admin/edit/{id}(id=${admin.id})}">
                     Enable
-                </a>  |
+                    </a>  |
                     <a th:href="@{/admin/delete/{id}(id=${admin.id})}">
                         Delete
-                    </a> </td>
+                    </a>
+                </td>
             </tr>
         </table>
     </div>
