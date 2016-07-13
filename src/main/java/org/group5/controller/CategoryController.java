@@ -34,7 +34,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/add" ,method= RequestMethod.GET)
     public  String addCategory(@ModelAttribute Category category){
-        return PATH+"add";
+        return "/admin/view/addCategory";
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class CategoryController {
     public String editCategory(@PathVariable int id, Model model){
         Category category= categoryService.findBy(id);
         model.addAttribute("category",category);
-        return PATH+"add";
+        return "/admin/view/addCategory";
     }
 
     @RequestMapping(value="/delete/{id}")

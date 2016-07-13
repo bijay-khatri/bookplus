@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+    <div class="ctnr" th:fragment="books">
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." />
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <button type="button"  class="btn btn-success"><a href="book/add">Add Book</a> </button>
+            </nav>
+
+        </header>
+        <main data-ng-controller="BookController as bookCtrl"
+              th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+            <div class="media title">
+                <div class="media-body">
+                    <div class="col-sm-2">
+                        ISBN
+                    </div>
+                    <div class="col-sm-2">
+                        Title
+                    </div>
+                    <div class="col-sm-1">
+                        Price
+                    </div>
+                    <div class="col-sm-1">
+                        Discount
+                    </div>
+                    <div class="col-sm-4">
+                        Description
+                    </div>
+                    <div class="col-sm-2">
+                        Edit/Delete
+                    </div>
+                </div>
+            </div>
+
+            <div class="media book" data-ng-repeat="book in bookCtrl.books">
+                <div class="media-body">
+                    <div class="col-sm-2">
+                        {{book.isbn}}
+                    </div>
+                    <div class="col-sm-2">
+                        {{book.name}}
+                    </div>
+                    <div class="col-sm-1">
+                        {{book.price}}
+                    </div>
+                    <div class="col-sm-1">
+                        {{book.discount}}
+                    </div>
+                    <div class="col-sm-4">
+                        {{book.description}}
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-info">
+                            <a href="/admin/book/edit/{{book.id}}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-danger">
+                            <a href="#" ng-click="bookCtrl.deleteBook(book.id)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+    </div>
+</body>
+</html>

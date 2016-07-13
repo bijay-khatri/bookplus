@@ -8,50 +8,53 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<div class="container">
-    <div class="col-md-8 col-md-offset-2">
-        <h1>Add Book</h1>
+    <div class="ctnr" th:fragment="addBook">
+        <header>
+            <h1>Add Book</h1>
+        </header>
+        <main>
+            <div class="">
+                <h3 th:text="${message}">Message</h3>
 
-        <h3 th:text="${message}">Message</h3>
+                <form action="#" th:action="@{/admin/book/add}" th:object="${book}" method="post" enctype="multipart/form-data">
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                    </div>
+                    <label>Category</label>
+                    <select th:field="*{category}">
+                        <option disabled="true" selected="selected" value="">Select</option>
+                        <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                    </select>
 
-        <form action="#" th:action="@{/admin/book/add}" th:object="${book}" method="post" enctype="multipart/form-data">
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                    <label for="name">ISBN</label>
+                    <input type="text" th:field="*{isbn}" class="form-control" id="isbn" placeholder="ISBN"/>
+
+
+                    <label for="name">name</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name"/>
+
+                    <label for="name">description</label>
+                    <textarea th:field="*{description}" class="form-control" id="description" placeholder="Description"/>
+
+                    <label for="name">Price</label>
+                    <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="price"/>
+
+                    <label for="name">Discount</label>
+                    <input type="text"  th:field="*{discount}" class="form-control" id="discount" placeholder="Discount"/>
+
+                    <label for="quantity">Quantity In Stock</label>
+                    <input type="text"  th:field="*{quantity}" class="form-control" id="quantity" placeholder="Quantity"/>
+
+                    <label for="status">Status</label>
+                    <select th:field="*{status}" id="status">
+                        <option th:each="stat:${allStatus}" th:value="${stat}" th:text="${stat.toString().toLowerCase()}" />
+                    </select>
+
+                    <input type="hidden" th:field="*{id}"/>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
             </div>
-            <label>Category</label>
-            <select th:field="*{category}">
-                    <option disabled="true" selected="selected" value="">Select</option>
-                    <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-            </select>
-
-            <label for="name">ISBN</label>
-            <input type="text" th:field="*{isbn}" class="form-control" id="isbn" placeholder="ISBN"/>
-
-
-            <label for="name">name</label>
-            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name"/>
-
-            <label for="name">description</label>
-            <textarea th:field="*{description}" class="form-control" id="description" placeholder="Description"/>
-
-            <label for="name">Price</label>
-            <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="price"/>
-
-            <label for="name">Discount</label>
-            <input type="text"  th:field="*{discount}" class="form-control" id="discount" placeholder="Discount"/>
-
-            <label for="quantity">Quantity In Stock</label>
-            <input type="text"  th:field="*{quantity}" class="form-control" id="quantity" placeholder="Quantity"/>
-
-            <label for="status">Status</label>
-            <select th:field="*{status}" id="status">
-                <option th:each="stat:${allStatus}" th:value="${stat}" th:text="${stat.toString().toLowerCase()}" />
-            </select>
-
-            <input type="hidden" th:field="*{id}"/>
-           <button type="submit" class="btn btn-success">Add</button>
-        </form>
-        </div>`
-</div>
+        </main>
+    </div>
 </body>
 </html>

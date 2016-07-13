@@ -9,12 +9,12 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<div class="container">
-    <div class="col-md-8 col-md-offset-2">
+<div class="ctnr" th:fragment="addCategory">
+    <header>
         <h1>BookPlus - Add Category</h1>
-
-
-        <form action="#" th:action="@{/admin/category/add}" th:object="${category}" method="post">
+    </header>
+    <main>
+        <form action="#" th:action="@{/admin/category}" th:object="${category}" method="post">
 
             <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
@@ -33,7 +33,7 @@
             <button type="submit" class="btn btn-success">Add</button>
         </form>
 
-    </div>
+    </main>
 </div>
 </body>
 </html>

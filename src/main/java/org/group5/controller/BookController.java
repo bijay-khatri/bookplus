@@ -42,12 +42,12 @@ public class BookController {
     @RequestMapping(value="/add", method= RequestMethod.GET)
     public String addBook(@ModelAttribute Book book, Model model){
         model.addAttribute("categories", categoryService.getAll());
-        return PATH + "add";
+        return "/admin/view/addBook";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String addBookSuccess(Model model, @Valid Book book, BindingResult result, RedirectAttributes redirect){
-        String view = "redirect:" + PATH + "all";
+        String view = "redirect:" + "/admin/dashboard";
 
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
@@ -75,7 +75,7 @@ public class BookController {
         model.addAttribute("categories", categoryService.getAll());
         book.setQuantity(book.getProductCopies().size());
         model.addAttribute("book", book);
-        return PATH + "add";
+        return "/admin/view/addBook";
     }
 
     @RequestMapping(value="/edit/{id}",method = RequestMethod.POST)

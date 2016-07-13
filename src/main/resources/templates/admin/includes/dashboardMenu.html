@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link rel="icon" th:href="@{/images/icon.png}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/css/admin/style.css}" />
+</head>
+<body>
+
+
+<aside id="left" class="side col-sm-2" th:fragment="leftAside">
+    <header>
+        <h1>
+            <a href="/admin/dashboard">
+                Book<span>Plus</span>
+            </a>
+        </h1>
+    </header>
+    <main>
+        <div class="admin">
+            <div class="profilePic"></div>
+            <h3>Hi <span>Admin</span></h3>
+            <a href="#">Account</a>
+            <a href="#">Logout</a>
+        </div>
+        <div class="nav-side-menu">
+            <h3>Menu</h3>
+            <div class="menu-list">
+
+                <ul id="menu-content" class="menu-content collapse out">
+                    <li>
+                        <a href="/admin/dashboard">
+                            <i class="fa fa-user fa-lg"></i> Book Copy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/dashboard">
+                            <i class="fa fa-user fa-lg"></i> Book
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/category">
+                            <i class="fa fa-users fa-lg"></i> Category
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-users fa-lg"></i> Order
+                        </a>
+                    </li>
+
+                    <li data-toggle="collapse" data-target="#new" class="collapsed">
+                    <a href="#"><i class="fa fa-car fa-lg"></i> Users <span class="arrow"></span></a>
+                    </li>
+                    <ul class="sub-menu collapse" id="new">
+                    <li>Admin</li>
+                    <li>Customer</li>
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+    </main>
+</aside>
+</body>
+
+</html>
