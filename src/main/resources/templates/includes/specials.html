@@ -5,30 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    <section class="special-product" th:fragment="specials">
+    <section class="special-product" th:fragment="specials" data-ng-controller="BookController as bookCtrl"
+             th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
         <div class="title">
             <p>Special</p>
         </div>
-        <div class="product">
+        <div class="product" data-ng-repeat="book in bookCtrl.books">
             <div class="thumb">
-                <img th:src="@{/images/books/file_3.png}" />
+                <img th:src="@{/images/books/file_27_9.png}" />
             </div>
-            <title>Promises in Death (In Death)</title>
-            <p class="price"><span class="regularPrice">$42.41</span> <span class="specialPrice">$40</span></p>
+            <title>{{book.isbn}}</title>
+            <p class="price">{{book.price}}</p>
             <button class="add">
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                Add to cart
-            </button>
-        </div>
-        <div class="product">
-            <div class="thumb">
-                <img th:src="@{/images/books/file_27_7.png}" />
-            </div>
-            <title>Promises in Death (In Death)</title>
-            <p class="price"><span class="regularPrice">$42.41</span> <span class="specialPrice">$40</span></p>
-            <button class="add">
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                Add to cart
+                <a href="/ShoppingCart/editCartQuantity/{{book.id}}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    Add to cart
+                </a>
             </button>
         </div>
     </section>

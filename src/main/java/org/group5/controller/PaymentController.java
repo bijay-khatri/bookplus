@@ -91,7 +91,7 @@ public class PaymentController {
             orderLine.setDeliveryDate(deliveryDate);
             order.addOrderLineItem(orderLine);
 
-            cartService.delete(item.getProductCopy(item.getId()).getId());
+            //cartService.delete(item.getProductCopy(item.getId()).getId());
 
         }
         order.setOrderDate(new Date());
