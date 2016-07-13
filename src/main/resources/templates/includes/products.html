@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<section class="products" th:fragment="products" data-ng-controller="BookController as bookCtrl"
+         th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+    <div class="title">
+        <p>Products</p>
+    </div>
+
+    <div class="product" data-ng-repeat="book in bookCtrl.books">
+        <div class="thumb">
+            <img th:src="@{/images/books/file_27_9.png}" />
+        </div>
+        <title>{{book.isbn}}</title>
+        <p class="price">{{book.price}}</p>
+        <button class="add">
+            <a href="/ShoppingCart/editCartQuantity/{{book.id}}">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                Add to cart
+            </a>
+        </button>
+    </div>
+
+</section>
+
+</body>
+</html>

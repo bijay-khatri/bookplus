@@ -28,6 +28,11 @@ public class UIController {
     public String login(@ModelAttribute Customer customer){
         return "user/login";
     }
+    @RequestMapping("/category/{id}")
+    public String productsByCategory(){
+
+        return "main";
+    }
 
 }
 

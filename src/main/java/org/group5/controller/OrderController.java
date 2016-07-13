@@ -38,10 +38,10 @@ public class OrderController {
         mav.addObject("order", order);*/
         return mav;
     }
-    @RequestMapping(value = "admin/orderDetail")
+    @RequestMapping(value = "admin/orders")
     public String allOrders(Model model){
         model.addAttribute("OrderDetail",orderService.getAll());
-        return "admin/orderDetail";
+        return "/admin/view/orders";
     }
 
 }
