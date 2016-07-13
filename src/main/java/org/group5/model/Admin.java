@@ -1,5 +1,6 @@
 package org.group5.model;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -11,6 +12,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ROLE_ADMIN")
 public class Admin extends Person {
 
+    @Column(name="admin_enabled")
     private boolean enabled = false;
 
     public boolean isEnabled() {

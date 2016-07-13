@@ -10,7 +10,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body class="login">
-<main class="col-md-6 col-md-offset-3">
+<main class="col-md-8 col-md-offset-2">
     <header class="col-md-12">
         <div id="logo"><a href="/home"></a></div>
     </header>
@@ -19,9 +19,12 @@
             <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="login">
                     <img class="profile-img" src="/images/pro-pic.jpg"  alt="" />
-                    <form class="form-signin" action="" method="">
-                        <input type="text" class="form-control" placeholder="Username" th:required="required" th:autofocus="autofocus" />
-                        <input type="password" class="form-control" placeholder="Password" th:required="required" />
+                    <form class="form-signin" th:action="@{/customer/login}" method="POST">
+                        <label for="username">Email: </label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="example@abc.com" th:autofocus="autofocus"/>
+                        <label for="password">Password: </label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="*********"/>
+
                         <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
                     </form>
                     <div id="tabs" data-tabs="tabs">
@@ -29,12 +32,47 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="register">
-                    <form class="form-signin" action="" method="">
-                        <input type="text" class="form-control" placeholder="User Name ..." th:required="required" th:autofocus="autofocus" />
-                        <input type="email" class="form-control" placeholder="Emaill Address ..." th:required="required" />
-                        <input type="password" class="form-control" placeholder="Password ..." th:required="required" />
-                        <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign Up" />
-                    </form>
+                    
+                        <h1>Register New User</h1>
+                        ​
+                        <form action="#" th:action="@{/customer/create}" th:object="${customer}" method="post">
+                            <div class="alert" th:if="${#fields.hasErrors('*')}">
+                                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                            </div>
+                            ​
+                            <label for="firstName">First Name</label>
+                            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Given Name"/>
+                            <label for="lastName">Last Name</label>
+                            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name"/>
+                            ​
+                            <label for="email">Email </label>
+                            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="example@ab.cd"/>
+                            ​
+                            <label for="signup-password">Password: </label>
+                            <input type="password" th:field="*{password}" class="form-control" id="signup-password" placeholder="*********"/>
+                            ​
+                            <label for="re-signup-password">Confirm Password: </label>
+                            <input type="password" class="form-control" id="re-signup-password" placeholder="*********"/>
+                            ​
+                            <!--
+                            check two passwords by JS
+                            -->
+                            ​
+                            <label for="city">City</label>
+                            <input type="text" th:field="*{address.city}" class="form-control" id="city" placeholder="City"/>
+                            ​
+                            <label for="city">State</label>
+                            <input type="text" th:field="*{address.state}" class="form-control" id="state" placeholder="State"/>
+                            ​
+                            <label for="street">Street</label>
+                            <input type="text" th:field="*{address.street}" class="form-control" id="street" placeholder="Street"/>
+                            ​
+                            <label for="zip">ZIP </label>
+                            <input type="text" th:field="*{address.zip}" class="form-control" id="zip" placeholder="ZIP"/>
+                            ​
+                            ​
+                            <button type="submit" class="submit-register">Get Started</button>
+                        </form>
                     <div id="tabs" data-tabs="tabs">
                         <p class="text-center">Already have an Account? <a href="#login" data-toggle="tab">Sign in here</a></p>
                     </div>

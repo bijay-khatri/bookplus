@@ -17,7 +17,7 @@
             <h1>Update Profile</h1>
             ​
             ​
-            <form action="#" th:action="@{/customer/myPage}" th:object="${customer}" method="post">
+            <form action="#" th:action="@{/customer/update}" th:object="${customer}"  method="post">
                 ​
                 <div class="alert" th:if="${#fields.hasErrors('*')}">
                     <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
@@ -31,20 +31,15 @@
                 <label for="email">Email </label>
                 <input type="text" th:field="*{email}" class="register-info" id="email" th:value="*{email}"/>
                 ​
-                <label for="old-password">Old  Password: </label>
-                <input type="password" th:field="*{password}" class="register-info" id="old-password"/>
+                <label for="password">Old  Password: </label>
+                <input type="password" th:field="*{password}" class="register-info" id="password" name="password"/>
                 ​
                 ​
-                <label for="new-password">New Password: </label>
-                <input type="password" th:field="*{password}" class="register-info" id="new-password"/>
+                <label for="pass1">New Password: </label>
+                <input type="password"  class="register-info" id="pass1" name="pass1"/>
                 ​
-                <label for="re-new-password">Confirm New Password: </label>
-                <input type="password" class="register-info" id="re-new-password"/>
-                ​
-                <!--
-                check two passwords by JS
-                -->
-                ​
+                <label for="pass2">Confirm New Password: </label>
+                <input type="password" class="register-info" id="pass2" name="pass2"/>
                 <label for="city">City</label>
                 <input type="text" th:field="*{address.city}" class="register-info" id="city" th:value="--"/>
                 <label for="city">State</label>
@@ -56,14 +51,16 @@
                 <label for="zip">ZIP </label>
                 <input type="text" th:field="*{address.zip}" class="register-info" id="zip" th:value="*{address.zip}"/>
                 ​
-                ​
+                ​<input type="hidden" th:field="*{id}"/>
                 <button type="submit" class="submit-register">Update</button>
             </form>
-            <form th:action="@{/}" method="delete">
-                ​
+
+
+            <form th:action="@{/customer/deactivate}" method="post">
                 <button type="submit" class="login-btn">Deactivate</button>
-                ​
             </form>
+
+
         </div>
     </div>
 </div>

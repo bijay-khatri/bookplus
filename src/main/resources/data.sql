@@ -7,4 +7,4 @@ INSERT INTO Category(name,description,state)  VALUES ("Category-04","Description
 INSERT INTO Category(name,description,state)  VALUES ("Category-05","Description-Category-05",0);
 
 
-INSERT INTO user(first_name, last_name,email,password,role,enabled,zip) VALUES ('test','ltest','admin','admin123','ROLE_ADMIN',1,52557);
+INSERT INTO user(first_name, last_name,email,password,role,admin_enabled,zip) VALUES ('test','ltest','admin','admin123','ROLE_ADMIN',1,52557);

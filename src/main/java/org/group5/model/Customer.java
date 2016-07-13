@@ -1,5 +1,6 @@
 package org.group5.model;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -10,11 +11,13 @@ import javax.persistence.OneToOne;
 @Entity
 @DiscriminatorValue("ROLE_USER")
 public class Customer extends Person{
-
     @OneToOne
     private Order order;
     @OneToOne
     private Account account;
+
+    @Column(name="user_deactivated")
+    private boolean deactivated = false;
 
     public Order getOrder() {
         return order;
@@ -34,5 +37,13 @@ public class Customer extends Person{
 
     public Customer(){
 
+    }
+
+    public boolean isDeactivated() {
+        return deactivated;
+    }
+
+    public void setDeactivated(boolean deactivated) {
+        this.deactivated = deactivated;
     }
 }
