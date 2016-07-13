@@ -22,7 +22,18 @@ public class Category {
     @NotEmpty @Lob
     private String description;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="category",cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Boolean state;
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
+    }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="category",cascade = CascadeType.MERGE)
     private Set<Product> products = new HashSet<>(0);
 
 
@@ -59,6 +70,8 @@ public class Category {
     }
 
     public void addProduct(Product product){
+        if (products.contains(product))
+            return ;
         //product.setCategory(this);
         this.products.add(product);
     }

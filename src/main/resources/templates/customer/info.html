@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>profile</title>
+</head>
+<body>
+​
+<h1></h1>
+<div class="welcome">
+    Hi
+    <td th:text="${customer.getFirstName()}"></td>, Welcome
+</div>
+​
+<div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu" >
+        <div class="list-group" style="height:370px;">
+            ​
+            ​<h3 th:text="${message}"/>
+            <!-- <a th:href="@{/customer/setting/1}">-->
+            ​
+            ​
+            <a th:href="@{'/customer/setting/'+${customer.id}}">
+                Edit
+            </a>
+            <!-- ${customerId}-->
+            ​
+            <a th:href="@{'/customer/profile/'+${customer.id}}"><br/>
+                View Profile
+            </a>
+            ​
+            <a th:href="@{/}"><br/>
+                Logout
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

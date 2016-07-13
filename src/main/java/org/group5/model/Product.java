@@ -28,8 +28,7 @@ public abstract class Product {
     @Lob @NotEmpty(message="Description may not be empty")
     private String description;
 
-    @Lob
-    private byte[] image;
+    private String image;
 
     @DecimalMin(value = "0")
     private Double price;
@@ -94,11 +93,11 @@ public abstract class Product {
         this.description = description;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -139,8 +138,18 @@ public abstract class Product {
     }
 
     public void setCategory(Category category) {
-        category.addProduct(this);
+        //prevent endless loop
+        if(sameAsFormer(category)) return;
+
+        if(category !=null)
+            category.addProduct(this);
+
+        Category temp = this.category;
         this.category = category;
+
+        if(temp !=null){
+            temp.removeProduct(this);
+        }
     }
 
     public void removeCategory(Category category){
@@ -151,6 +160,10 @@ public abstract class Product {
     public void addProductCopy(ProductCopy copy){
         copy.setProduct(this);
         this.productCopies.add(copy);
+    }
+
+    private boolean sameAsFormer(Category newCategory) {
+        return category==null? newCategory == null : category.equals(newCategory);
     }
 
 }

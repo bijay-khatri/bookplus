@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link rel="icon" th:href="@{/images/icon.png}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/css/admin/style.css}" />
 </head>
 <body>
-    Admin Page
+<section id="loginSection">
+
+    <div id="loginFormCtnr">
+        <div id="logo"></div>
+        <form name="loginForm" method="POST" th:action="@{/admin/login}">
+            <h3 style="color:#fff" th:text="${message}"/>
+            <label for="password">User Name: </label>
+            <input type="text" name="email"/>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" />
+            <input id="submit" type="submit" value="SIGN IN" />
+        </form>
+        <div class="links">
+            <span><a href="#" >Forget Password</a></span>
+            <span>Haven't yet registered? <a th:href="@{/admin/apply}">Sign up here</a> </span>
+        </div>
+    </div>
+</section>
 </body>
 </html>

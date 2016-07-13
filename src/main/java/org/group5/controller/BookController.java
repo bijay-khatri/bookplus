@@ -1,5 +1,6 @@
 package org.group5.controller;
 
+import org.group5.Utility;
 import org.group5.model.Book;
 import org.group5.model.enums.Status;
 import org.group5.service.BookService;
@@ -8,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -42,12 +41,16 @@ public class BookController {
     @RequestMapping(value="/add", method= RequestMethod.GET)
     public String addBook(@ModelAttribute Book book, Model model){
         model.addAttribute("categories", categoryService.getAll());
-        return PATH + "add";
+        return "/admin/view/addBook";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String addBookSuccess(Model model, @Valid Book book, BindingResult result, RedirectAttributes redirect){
-        String view = "redirect:" + PATH + "all";
+    public String addBookSuccess(Model model, @RequestParam("myFile") MultipartFile file, @Valid Book book, BindingResult result, RedirectAttributes redirect){
+        String view = "redirect:" + "/admin/dashboard";
+
+        //delegate uploads
+        String filename = Utility.uploadImage(file);
+        if(!filename.isEmpty())book.setImage(filename);
 
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
@@ -57,7 +60,7 @@ public class BookController {
 
         else {
             bookService.add(book);
-            redirect.addFlashAttribute("message", "Book sucessfully added");
+            redirect.addFlashAttribute("message", "Book successfully added");
         }
 
         return view;
@@ -75,12 +78,7 @@ public class BookController {
         model.addAttribute("categories", categoryService.getAll());
         book.setQuantity(book.getProductCopies().size());
         model.addAttribute("book", book);
-        return PATH + "add";
-    }
-
-    @RequestMapping(value="/edit/{id}",method = RequestMethod.POST)
-    public String editBookSuccess(@PathVariable int id, Model model, @Valid Book book, BindingResult result, RedirectAttributes ra){
-        return addBookSuccess(model,book, result, ra);
+        return "/admin/view/addBook";
     }
 
     @ModelAttribute("allStatus")

@@ -1,11 +1,8 @@
 package org.group5.model;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
+import java.util.Date;
+
 /**
  * Created by Neha on 7/10/2016.
  */
@@ -17,7 +14,10 @@ public class OrderLine {
     private Long id;
     @ManyToOne
     private Product product;
-    private int quantity;
+    private int quantity = 1;
+    @Temporal(TemporalType.DATE)
+    private Date deliveryDate;
+
     public OrderLine() {
 
     }
@@ -48,11 +48,20 @@ public class OrderLine {
         this.product = product;
     }
 
+
+    public Date getDeliveryDate() {
+        return this.deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
     public Double getPrice() {
         if (this.product != null) {
-            return this.product.getPrice()* this.getQuantity();
+            return this.product.getPrice() * this.getQuantity();
         }
-      return 0.0;
+        return 0.0;
     }
 
 }
