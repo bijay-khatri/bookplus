@@ -1,7 +1,6 @@
 package org.group5.service;
 
 import org.group5.model.Book;
-import org.group5.model.Category;
 import org.group5.model.Product;
 
 import java.util.Set;
@@ -25,7 +24,7 @@ public interface BookService {
 
     Set<Book> get2SpecialDiscountedBook();
 
-    Set<Book> getBookByCategory(Category category);
+    Set<Book> getBookByCategory(long categoryId);
 
 
 }
