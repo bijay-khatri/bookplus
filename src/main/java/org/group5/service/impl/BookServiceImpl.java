@@ -2,6 +2,7 @@ package org.group5.service.impl;
 
 import org.group5.dao.BookDao;
 import org.group5.model.Book;
+import org.group5.model.Category;
 import org.group5.model.Product;
 import org.group5.model.ProductCopy;
 import org.group5.service.BookService;
@@ -61,6 +62,21 @@ public class BookServiceImpl implements BookService {
     @Override
     public int getProductCopies(Product p) {
         return bookDao.getProductCopies(p);
+    }
+
+    @Override
+    public Set<Book> getLastestBook(int limit) {
+        return null;
+    }
+
+    @Override
+    public Set<Book> getSpecialDiscountedBook(int limit) {
+        return null;
+    }
+
+    @Override
+    public Set<Book> getBookByCategory(Category category) {
+        return null;
     }
 
 
