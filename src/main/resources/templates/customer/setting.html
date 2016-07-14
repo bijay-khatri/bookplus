@@ -17,7 +17,7 @@
             ​
             ​
             <form action="#" th:action="@{/customer/update}" th:object="${customer}"  method="post">
-                ​
+                ​<h3 th:text="${message}"/>
                 <div class="alert" th:if="${#fields.hasErrors('*')}">
                     <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
                 </div>
