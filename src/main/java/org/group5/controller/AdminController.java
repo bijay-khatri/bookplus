@@ -6,6 +6,7 @@ import org.group5.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,25 +63,42 @@ public class AdminController {
         String view =  "redirect:"+PATH + "dashboard";
         if(admin == null)
         {
-            redirect.addFlashAttribute("message","Please correct the following errors.");
-            view ="redirect:"+PATH + "login";
+            redirect.addFlashAttribute("message","Error on username or password.");
+            view ="redirect:"+PATH ;
         }
         else {
-            if(session.getAttribute("admin") == null)
-                session.setAttribute("admin",admin);
-            redirect.addFlashAttribute("message", admin.getFirstName()+", \nWelcome Back!!");
+            if (!admin.isEnabled()) {
+                redirect.addFlashAttribute("message", "Your account is not activated");
+                view = view = "redirect:" + PATH ;
+            } else {
+                if (session.getAttribute("admin") == null)
+                    session.setAttribute("admin", admin);
+                redirect.addFlashAttribute("message", admin.getFirstName() + ", \nWelcome Back!!");
+            }
         }
         return view;
     }
 
     @RequestMapping(value="/preregister", method= RequestMethod.POST)
-    public String getPending(@Valid Admin admin, HttpSession session, RedirectAttributes redirect){
-        adminService.add(admin);
-        redirect.addFlashAttribute("message","Please wait for activation before using app");
-        if(session.getAttribute("admin") == null)
-            session.setAttribute("admin",admin);
-        return "redirect:" + PATH  +"dashboard";
+    public String getPending(@Valid Admin admin, BindingResult result, HttpSession session, Model model){
+
+        String msg="Please wait for activation before using your login credential";
+        String view;
+        if(result.hasErrors()){
+            msg="Some information missing, Please sign up with complete information" ;
+            view="register";
+            //  <h3 style="color:#fff" th:text="${message}"/> on the page
+        }
+        else{
+            adminService.add(admin);
+            view="index";
+        }
+
+        model.addAttribute("message",msg);
+        return PATH+view;
     }
+
+
 
     @RequestMapping("/all")
     public String getAllAdmin(Model model, HttpSession session){

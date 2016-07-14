@@ -62,7 +62,7 @@
 
         this.getBooksByCategoryId = function (id) {
             $http.get(self.url + "api/book/category/" +id).success(function(data) {
-                self.books = data;
+                self.catbooks = data;
             });
         }
 
