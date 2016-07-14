@@ -4,7 +4,8 @@
 
 </head>
 <body>
-<div class="ctnr">
+<div class="ctnr" data-ng-controller="BookController as bookCtrl"
+     th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
     <header class="col-md-12" th:replace="/includes/header :: header">
 
     </header>

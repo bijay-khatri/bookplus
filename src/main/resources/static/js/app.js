@@ -59,13 +59,14 @@
         }
 
         /*** get books by Category Id */
-
-        this.getBooksByCategoryId = function (id) {
-            
-            $http.get(self.url + "api/book/category/" +id).success(function(data) {
-                self.catbooks = data;
+        this.getBooksByCategoryId = function(id){
+            console.log("inside Category->Books with ID: " + id);
+            $http.get(self.url + "api/book/category/" + id).success(function(data) {
+                self.books = data;
+                console.log(data);
             });
-            console.log(self.catbooks);
+
+            //hide the div and show result
             $("section.index").css("display" ,"none");
             $("section.products").css("display" ,"block");
         }

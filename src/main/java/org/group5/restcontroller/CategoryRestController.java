@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by Bijay on 7/11/2016.
@@ -21,8 +21,7 @@ public class CategoryRestController {
 
     /**********GET All Categories *************/
     @RequestMapping("all")
-    public Set<Category> findAllCategories() throws InterruptedException {
-        //TimeUnit.SECONDS.sleep(10);
+    public List<Category> findAllCategories() {
         return categoryService.getAll();
     }
 //

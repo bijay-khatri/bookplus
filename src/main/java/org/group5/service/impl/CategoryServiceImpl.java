@@ -6,8 +6,7 @@ import org.group5.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by Rishi on 7/10/2016.
@@ -19,10 +18,11 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public Set<Category> getAll() {
-        Set<Category> result= new HashSet<>();
-        categoryDao.findAll().forEach(item->result.add(item));
-        return result;
+    public List<Category> getAll() {
+//        Set<Category> result= new HashSet<>();
+//        categoryDao.findAll().forEach(item->result.add(item));
+//        return result;
+        return categoryDao.findAllByOrderByNameAsc();
     }
 
     @Override

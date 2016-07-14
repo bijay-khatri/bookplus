@@ -5,25 +5,27 @@
     <title>Title</title>
 </head>
 <body>
-<section class="products" th:fragment="products" data-ng-controller="BookController as bookCtrl"
-         th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+<section class="products" th:fragment="products" >
     <div class="title">
         <p>Products</p>
     </div>
 
-    <div class="product" data-ng-repeat="book in bookCtrl.catbooks[0]">
-        <p>{{book.id}}</p>
-        <div class="thumb">
-            <img th:src="@{/images/books/{{book.image}}}" />
+    <div class="product" data-ng-repeat="book in bookCtrl.books">
+            <div class="thumb">
+                <img th:src="@{/images/books/{{book.image}}}" />
+            </div>
+            <title>{{book.name}}</title>
+            <p class="price">{{book.price}}</p>
+            <button class="add">
+                <a href="/cart/productDetail/{{book.id}}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    Add to cart
+                </a>
+            </button>
+        <div data-ng-show="book == null">
+            No Items
         </div>
-        <title>{{book.name}}</title>
-        <p class="price">{{book.price}}</p>
-        <button class="add">
-            <a href="/cart/productDetail/{{book.id}}">
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                Add to cart
-            </a>
-        </button>
+
     </div>
 
 </section>

@@ -5,8 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<section class="newProducts index" th:fragment="newProducts" data-ng-controller="BookController as bookCtrl"
-         th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+<section class="newProducts index" th:fragment="newProducts">
     <div class="title">
         <p>New Products</p>
     </div>

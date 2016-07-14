@@ -18,6 +18,16 @@ public class Book extends Product {
     @Column(unique = true)
     private String isbn;
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    private String author;
+
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
@@ -37,7 +47,7 @@ public class Book extends Product {
         this.isbn = isbn;
     }
 
-    public Book(String name, String description, Genre genre, String isbn) {
+    public Book(String name, String description, Genre genre, String isbn, String author) {
         super(name, description);
         this.genre = genre;
         this.isbn = isbn;

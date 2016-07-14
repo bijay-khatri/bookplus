@@ -9,7 +9,7 @@
     <div class="productDetail">
         <h1 th:text="${book.getName()}"></h1>
         <div class="photo">
-            <img th:src="@{/images/books/file_27_9.png}" />
+            <img th:src="@{/images/books/{{book.image}}}" />
         </div>
         <p th:text="${book.getDescription()}"></p>
     </div>

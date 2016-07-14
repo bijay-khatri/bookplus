@@ -5,8 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<section class="side-menu" th:fragment="categories" data-ng-controller="BookController as categoryCtrl"
-         th:attr="ng-init='categoryCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
+<section class="side-menu" th:fragment="categories">
     <div class="title">
         <p>Categories</p>
     </div>
@@ -15,9 +14,9 @@
 
             <ul id="menu-content" class="menu-content collapse out">
 
-                <li data-ng-repeat="category in categoryCtrl.categories">
+                <li data-ng-repeat="category in bookCtrl.categories">
                     <!--/category/{{$index+1}}-->
-                    <a href="#" data-ng-click="categoryCtrl.getBooksByCategoryId(category.id)">
+                    <a href="#" data-ng-click="bookCtrl.getBooksByCategoryId(category.id)">
                         <i class="fa fa-user fa-lg"></i> {{category.name}}
                     </a>
                 </li>

@@ -13,13 +13,13 @@ INSERT INTO Product VALUES (5,'No Description',41,'file5.png','Dreamy Girl',555,
 INSERT INTO Product VALUES (6,'HNo Description',0,'file6.png','Women Enterprenureship',455,'ACTIVE',5);
 INSERT INTO Product VALUES (7,'No Description',41,'file7.png','Head First Java',555,'ACTIVE',3);
 
-INSERT INTO Book VALUES (NULL,'001-0000000001',1);
-INSERT INTO Book VALUES (NULL,'001-0000000002',2);
-INSERT INTO Book VALUES (NULL,'001-0000000003',3);
-INSERT INTO Book VALUES (NULL,'001-0000000004',4);
-INSERT INTO Book VALUES (NULL,'001-0000000005',5);
-INSERT INTO Book VALUES (NULL,'001-0000000006',6);
-INSERT INTO Book VALUES (NULL,'001-0000000007',7);
+INSERT INTO Book (genre,isbn, product_id,author) VALUES (NULL,'001-0000000001',1,"Bijay khatri");
+INSERT INTO Book (genre,isbn, product_id,author) VALUES  (NULL,'001-0000000002',2, "Rishi");
+INSERT INTO Book (genre,isbn, product_id,author) VALUES (NULL,'001-0000000003',3,"Ghanshaym");
+INSERT INTO Book (genre,isbn, product_id,author)  VALUES (NULL,'001-0000000004',4,"Rishi");
+INSERT INTO Book (genre,isbn, product_id,author)  VALUES (NULL,'001-0000000005',5,"Bijay Khatri");
+INSERT INTO Book (genre,isbn, product_id,author) VALUES (NULL,'001-0000000006',6,"Neha");
+INSERT INTO Book (genre,isbn, product_id,author) VALUES (NULL,'001-0000000007',7,"Oriyon");
 
 -- Product Copy
 INSERT INTO Product_Copy VALUES (1,1);
