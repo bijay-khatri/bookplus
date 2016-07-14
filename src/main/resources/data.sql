@@ -7,13 +7,13 @@ INSERT INTO Category VALUES  (4,'Description-Category-04','Category-04','\0');
 INSERT INTO Category VALUES (5,'Description-Category-05','Women and Empowerment','\0');
 INSERT INTO Category VALUES (6,'Description of Science and Fiction','Science and Fiction','');
 
-INSERT INTO Product VALUES (1,'Book About Java',40,NULL,'JAVA 8',123,'ACTIVE',2);
-INSERT INTO Product VALUES  (2,'Hello Book',22,NULL,'Programming with C#',444,'ACTIVE',2);
-INSERT INTO Product VALUES (3,'Python Programming',12,NULL,'Fun with Python',433,'ACTIVE',1);
-INSERT INTO Product VALUES (4,'Society and its role',11,NULL,'Society and Its Role',555,'ACTIVE',3);
-INSERT INTO Product VALUES (5,'No Description',41,NULL,'Dreamy Girl',555,'ACTIVE',2);
-INSERT INTO Product VALUES (6,'HNo Description',0,NULL,'Women Enterprenureship',455,'ACTIVE',5);
-INSERT INTO Product VALUES (7,'No Description',41,NULL,'Head First Java',555,'ACTIVE',3);
+INSERT INTO Product VALUES (1,'Book About Java',40,'file1.png','JAVA 8',123,'ACTIVE',2);
+INSERT INTO Product VALUES  (2,'Hello Book',22,'file2.png','Programming with C#',444,'ACTIVE',2);
+INSERT INTO Product VALUES (3,'Python Programming',12,'file3.png','Fun with Python',433,'ACTIVE',1);
+INSERT INTO Product VALUES (4,'Society and its role',11,'file4.png','Society and Its Role',555,'ACTIVE',3);
+INSERT INTO Product VALUES (5,'No Description',41,'file5.png','Dreamy Girl',555,'ACTIVE',2);
+INSERT INTO Product VALUES (6,'HNo Description',0,'file6.png','Women Enterprenureship',455,'ACTIVE',5);
+INSERT INTO Product VALUES (7,'No Description',41,'file7.png','Head First Java',555,'ACTIVE',3);
 
 INSERT INTO Book VALUES (NULL,'001-0000000001',1);
 INSERT INTO Book VALUES (NULL,'001-0000000002',2);

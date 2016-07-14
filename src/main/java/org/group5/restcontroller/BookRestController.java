@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -26,9 +27,11 @@ public class BookRestController {
     }
 
     /**********GET ALL BOOKS By CategoryId *************/
-    @RequestMapping("category/{category}")
-    public Set<Book> findAllBooksInCateory(@PathVariable String category){
-        return bookService.getAll();
+    @RequestMapping("category/{id}")
+    public Set<Book> findAllBooksInCateory(@PathVariable long id){
+        if(id > 0)
+            return bookService.getBookByCategory(id);
+        else return new HashSet<Book>();
     }
 
     @RequestMapping("{id}")

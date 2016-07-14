@@ -20,6 +20,7 @@
             self.loadSpecialBooks();
             self.loadCategories();
             self.loadLatestBooks();
+
         }
 
 
@@ -54,6 +55,14 @@
         this.loadLatestBooks = function () {
             $http.get(self.url + "api/book/latest").success(function(data) {
                 self.latestbooks = data;
+            });
+        }
+
+        /*** get books by Category Id */
+
+        this.getBooksByCategoryId = function (id) {
+            $http.get(self.url + "api/book/category/" +id).success(function(data) {
+                self.books = data;
             });
         }
 
