@@ -11,10 +11,9 @@
 ​
 <body>
 ​
-<div class="container">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="register">
-            <h1>Update Profile</h1>
+
+<section class="profile" th:fragment="setting">
+            <h1>Profile Settings</h1>
             ​
             ​
             <form action="#" th:action="@{/customer/update}" th:object="${customer}"  method="post">
@@ -61,8 +60,7 @@
             </form>
 
 
-        </div>
-    </div>
-</div>
+        </section>
+
 </body>
 </html>

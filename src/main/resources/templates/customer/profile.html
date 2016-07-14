@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<div class="container">
+<section class="profile" th:fragment="profile">
     <h1>
         Welcome!!!
     </h1>
@@ -24,13 +24,9 @@
             </tr>
         </table>
     </div>
-    <a href="details.html" th:href="@{/customer/setting/{id}(id=${customer.id})}">
+    <a href="details.html" th:href="@{/customer/profile/edit/{id}(id=${customer.id})}">
         Edit
     </a>
-    ​
-    <a th:href="@{/}"><br/>
-        Logout
-    </a>
-</div>
+</section>
 </body>
 </html>

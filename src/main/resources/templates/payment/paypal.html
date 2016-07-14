@@ -6,7 +6,7 @@
     <title>Paypal with Spring MVC</title>
 </head>
 <body>
-
+<section class="payment" th:fragment="paypal">
 <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
     <input type="hidden" name="upload" value="1"/>
     <!--<input type="hidden" name="return" value="${initparam['returnurl']}"/>-->
@@ -35,6 +35,6 @@
 
     <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
 </form>
-
+</section>
 </body>
 </html>

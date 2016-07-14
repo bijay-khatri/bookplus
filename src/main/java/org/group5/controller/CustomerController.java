@@ -28,9 +28,8 @@ public class CustomerController {
     }
 
     @RequestMapping(value="/login", method= RequestMethod.POST)
-    public String login(String username, String password,HttpSession session){
+    public String login(String username, String password,HttpSession session, Model model){
         Customer customer = customerService.getCustomer(username, password);
-       // String view =  "redirect:"+PATH + "dashboard";
         String view =  "redirect:/home";
         session.setAttribute("username",customer.getFirstName());
         session.setAttribute("userId",customer.getId());
@@ -43,7 +42,7 @@ public class CustomerController {
 
     @RequestMapping(value="/create", method= RequestMethod.POST)
     public String register(@Valid Customer customer, HttpSession session, BindingResult result, RedirectAttributes redirect, Model model){
-        String view =  "redirect:"+PATH + "dashboard";
+        String view =  "redirect:"+PATH + "profile";
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
 
@@ -62,9 +61,9 @@ public class CustomerController {
 
 
 
-    @RequestMapping(value="/dashboard", method= RequestMethod.GET)
+    @RequestMapping(value="/profile", method= RequestMethod.GET)
     public String getLogin(Model model, HttpSession session, RedirectAttributes redirect){
-        String view =  PATH + "info";
+        String view =  "user/profile";
         model.addAttribute("customer",(Customer) session.getAttribute("customer"));
         return view;
 
@@ -78,11 +77,11 @@ public class CustomerController {
     }
 
 
-    @RequestMapping(value="/setting/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/profile/edit/{id}", method=RequestMethod.GET)
     public String profleSetting(@PathVariable Long id, Model model){
         Customer customer=customerService.findById(id);
         model.addAttribute("customer", customer);
-        return PATH+"setting";
+        return "user/settings";
     }
 
     @RequestMapping(value="/info", method= RequestMethod.POST)
@@ -120,7 +119,7 @@ public class CustomerController {
     public String getProfile(@PathVariable Long id, Model model){
         Customer customer=customerService.findById(id);
         model.addAttribute("customer", customer);
-        return PATH+"profile";
+        return "redirect:" +PATH+"profile";
     }
 
     @RequestMapping(value="/update", method=RequestMethod.POST)
@@ -129,19 +128,18 @@ public class CustomerController {
         Customer cust=customerService.getCustomer(customer.getEmail(), customer.getPassword());
         if(cust.getId() == customer.getId() &&
                 pass1.equals(pass2)){
-            cust.setPassword(pass1);
-            customerService.add(cust);
+            customer.setPassword(pass1);
+            customerService.add(customer);
             ra.addFlashAttribute("message","Your information has been updated.");
-
         }
-        return "redirect:" + PATH +"dashboard";
+        return "redirect:" + PATH +"profile";
     }
 
     @RequestMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirect){
         session.invalidate();
         redirect.addFlashAttribute("message","Bye bye!. See you again");
-        return "redirect:" + PATH;
+        return "redirect:/home";
     }
 
 

@@ -1,5 +1,6 @@
 package org.group5.controller;
 
+import org.group5.model.Book;
 import org.group5.model.ProductCopy;
 import org.group5.service.BookService;
 import org.group5.service.ProductCopyService;
@@ -20,19 +21,20 @@ import java.util.Set;
  * Created by Example on 7/10/2016.
  */
 @Controller
-@RequestMapping("/ShoppingCart")
+@RequestMapping("/cart")
 public class ShoppingCartController {
     @Autowired
     private ProductCopyService cartService;
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/editCartQuantity/{id}", method = RequestMethod.GET)
-    public String editCartQuantity(@PathVariable(value = "id") int id, Model model) {
+    @RequestMapping(value = "/productDetail/{id}", method = RequestMethod.GET)
+    public String editCartQuantity(@PathVariable(value = "id") int id, Model model, HttpSession session) {
         //ProductCopy productCopy = cartService.findById(id);
         //long productId = productCopy.getProduct().getId();
         Set<ProductCopy> listOfProductCopy = cartService.getAll();
         int quantity = 0;
+        Book book = bookService.findById(id);
         for(ProductCopy copy:listOfProductCopy){
             if(copy.getProduct().getId()==id){
                 quantity+=1;
@@ -46,17 +48,19 @@ public class ShoppingCartController {
         System.out.println("============================");
         Item item = new Item(id,quantity);
         model.addAttribute("item",item);
+        model.addAttribute("book", book);
         //session.setAttribute("item1",item);
-        return "editCartQuantity";
+        return "/cart/add";
     }
 
     @RequestMapping(value = "/addToCart/{id}", method = RequestMethod.GET)
     public String addToCart(@PathVariable(value = "id") int id,
                             @RequestParam("quantity") int quantity, Model model, HttpSession session) {
         if (session.getAttribute("cart") == null) {
-            List<Item> cart = new ArrayList<Item>();
+            List<Item> cart = new ArrayList<>();
             cart.add(new Item(id,quantity));
             session.setAttribute("cart", cart);
+            model.addAttribute("cart_quantity", cart.get(0).getQuantity());
         } else {
             List<Item> cart = (List<Item>) session.getAttribute("cart");
             int flag = -1;
@@ -72,7 +76,9 @@ public class ShoppingCartController {
             }
             session.setAttribute("cart", cart);
 
+
         }
+
         return "cart";
     }
 

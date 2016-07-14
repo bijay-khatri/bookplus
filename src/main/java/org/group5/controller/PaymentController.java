@@ -55,7 +55,7 @@ public class PaymentController {
         if(type.equals(PaymentType.PAYPAL)){
             return  PATH +"paypal";
         }*/
-        return PATH + "/paypal";
+        return "/paypal";
 
        /* if(type.equals(PaymentType.CREDITCARD)){
 
@@ -104,7 +104,7 @@ public class PaymentController {
 
         session.setAttribute("order", order);
         //System.out.println(ps.getPaypal(request).getNum_cart_items());
-        return PATH + "/success";
+        return  "/success";
     }
 /*
     /*@RequestMapping(value="/paypal/{paypalId}", method= RequestMethod.POST)

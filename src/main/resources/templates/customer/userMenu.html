@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>profile</title>
+</head>
+<body>
+<section class="side-menu" th:fragment="userMenu" >
+    <div class="title">
+        <p>Menu</p>
+    </div>
+    <div class="nav-side-menu">
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+
+                <li >
+                    <a th:href="@{'/customer/profile/edit/'+${customer.id}}">
+                        Settings
+                    </a>
+                </li>
+                <li >
+                    <a th:href="@{'/customer/profile/'+${customer.id}}">
+                        View Profile
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>​
+</body>
+</html>

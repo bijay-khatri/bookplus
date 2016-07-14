@@ -5,26 +5,28 @@
     <title>Paypal with Spring MVC</title>
 </head>
 <body>
+<section class="paymentSuccess" th:fragment="success">
+    <h1>Payment Successfull</h1>
 
-<h1>Payment Successfull</h1>
+    <h2>Order Details</h2>
+    <table>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Quantity</th>
+        <th>Delivery Date</th>
 
-<h2>Order Details</h2>
-<table>
-    <th>Product Name</th>
-    <th>Product Price</th>
-    <th>Quantity</th>
-    <th>Delivery Date</th>
+        <tr th:each="item,iterationStatus:${session.order.getOrderLineItems()}">
+            <td th:text="${item.getProduct().getName()}"></td>
+            <td th:text="${item.getProduct().getPrice()}"></td>
+            <td th:text="${item.getQuantity()}"></td>
+            <td th:text="${item.getDeliveryDate()}"></td>
+        </tr>
 
-    <tr th:each="item,iterationStatus:${session.order.getOrderLineItems()}">
-        <td th:text="${item.getProduct().getName()}"></td>
-        <td th:text="${item.getProduct().getPrice()}"></td>
-        <td th:text="${item.getQuantity()}"></td>
-        <td th:text="${item.getDeliveryDate()}"></td>
-    </tr>
+    </table>
 
-</table>
+    <h3>Total Amount</h3>
+    <div th:text="${session.order.getTotalOrderPrice()}"></div>
 
-<h3>Total Amount</h3>
-<div th:text="${session.order.getTotalOrderPrice()}"></div>
+</section>
 </body>
 </html>

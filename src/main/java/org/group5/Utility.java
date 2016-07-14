@@ -15,7 +15,7 @@ public class Utility {
     private static String PATH = Utility.class.getResource("/static/uploads/").getPath(); //System.getProperty("user.dir");
 
     public static String uploadImage(MultipartFile file){
-        String fileName = null;
+        String fileName = "";
         if (!file.isEmpty()) {
         try {
             fileName = new Random().nextInt(10000) + " - " +file.getOriginalFilename();

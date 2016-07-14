@@ -3,8 +3,11 @@ import org.group5.dao.CustomerDao;
 import org.group5.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by Purevsuren-Mac on 7/11/16.
@@ -20,7 +23,12 @@ public class UIController {
 
 
     @RequestMapping("/home")
-    public String home(){
+    public String home(HttpSession session, Model model){
+        if(session.getAttribute("customer") != null){
+            model.addAttribute("customer", session.getAttribute("customer"));
+            model.addAttribute("cart_quantity",0);
+
+        }
         return "index";
     }
 

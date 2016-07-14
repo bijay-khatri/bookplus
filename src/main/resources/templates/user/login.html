@@ -35,7 +35,7 @@
                     
                         <h1>Register New User</h1>
                         ​
-                        <form action="#" th:action="@{/customer/create}" th:object="${customer}" method="post">
+                        <form class="form-signup" action="#" th:action="@{/customer/create}" th:object="${customer}" method="post">
                             <div class="alert" th:if="${#fields.hasErrors('*')}">
                                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
                             </div>

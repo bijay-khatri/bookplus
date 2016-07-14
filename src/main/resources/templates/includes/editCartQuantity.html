@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Quantity</title>
+</head>
+<body>
+<section class="addToCart" th:fragment="editQuantity">
+    <div class="productDetail">
+        <h1 th:text="${book.getName()}"></h1>
+        <div class="photo">
+            <img th:src="@{/images/books/file_27_9.png}" />
+        </div>
+        <p th:text="${book.getDescription()}"></p>
+    </div>
+    <form action="#" th:action="@{/cart/addToCart/{id}(id=${item.id})}" method="get">
+        <label>Qunatity</label>
+        <input type="hidden" th:field="${item.id}"/>
+        <input name ="quantity" type="text" th:field="${item.quantity}" class="form-control"/>
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+</section>
+</body>
+</html>

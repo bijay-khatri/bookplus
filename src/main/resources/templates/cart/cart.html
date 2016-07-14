@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add to Cart</title>
+</head>
+<body>
+<section class="addToCart" th:fragment="cart">
+<table>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Discount</th>
+    <th>Price</th>
+    <th>Sub Total</th>
+    <tr th:each="books,iterationStatus:${session.cart}">
+        <td th:text="${books.id}"></td>
+        <td th:text="${books.getProductCopy(books.id).getProduct().getName()}"></td>
+        <td th:text="${books.quantity}"></td>
+        <td th:text="${books.getProductCopy(books.id).getProduct().getDiscount()}"></td>
+        <td th:text="${books.getProductCopy(books.id).getProduct().getPrice()}"></td>
+        <td th:text="${books.quantity*books.getProductCopy(books.id).getProduct().getPrice()-
+        books.quantity*(books.getProductCopy(books.id).getProduct().getPrice()
+        *(books.getProductCopy(books.id).getProduct().getDiscount()/100))}"></td>
+        <td><a th:href="@{/payment/{paymentId}(paymentId=${books.id})}">Check out</a></td>
+    </tr>
+</table>
+</section>
+</body>
+</html>
