@@ -46,4 +46,16 @@ public class BookRestController {
         Book book = bookService.findById(id);
         return bookService.getProductCopies(book);
     }
+
+    @RequestMapping("/special")
+    public Set<Book> getSpecialsBook(){
+        return bookService.get2SpecialDiscountedBook();
+    }
+
+    @RequestMapping("/latest")
+    public Set<Book> getLatestBook(){
+        return bookService.getLastest6Books();
+    }
+
+
 }
