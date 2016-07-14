@@ -71,8 +71,7 @@ public class PaymentController {
 
     @RequestMapping(value = "/payment/success", method = RequestMethod.GET)
     public String success(ModelMap modelMap, HttpSession session, HttpServletRequest request) {
-        //PaypalSuccess ps=new PaypalSuccess();
-        // modelMap.put("result",ps.getPaypal(request));
+
         List<ShoppingCartController.Item> itemList = (List<ShoppingCartController.Item>) session.getAttribute("cart");
         Order order = new Order();
         Date now = new Date();
@@ -80,10 +79,10 @@ public class PaymentController {
         Date deliveryDate = addDays(now, 3);
 
 
-        Account account = accountService.findById((long)customerService.findById((long)session.getAttribute("userId")).getAccount().getId());
-        //Address address = new Address();
-      //  address.setCity("city");
-       // address.setZip("15220");
+        Account account =new Account();// accountService.findById((long)customerService.findById((long)session.getAttribute("userId")).getAccount().getId());
+        Address address = new Address();
+       address.setCity("city");
+        address.setZip("15220");
         account.setShippingAddress(account.getShippingAddress());
         accountService.add(account);
         for (ShoppingCartController.Item item : itemList) {

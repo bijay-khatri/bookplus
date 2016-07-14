@@ -16,7 +16,7 @@
             <th>Sub Total</th>
             <tr th:each="order,iterationStatus:${OrderDetail}">
                 <td th:text="${order.getId()}"></td>
-                <td th:text="${order.getDeliveryDate()}"></td>
+                <td th:text="${order.getOrderDate()}"></td>
                 <td th:text="${order.getTotalOrderPrice()}"></td>
             </tr>
         </table>
