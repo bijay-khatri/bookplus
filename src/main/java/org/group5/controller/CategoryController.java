@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -33,8 +34,14 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/add" ,method= RequestMethod.GET)
-    public  String addCategory(@ModelAttribute Category category){
+    public  String addCategory(@ModelAttribute Category category, HttpSession session){
+        if(!loggedIn(session)) return "redirect:/admin";
+
         return "/admin/view/addCategory";
+    }
+    private boolean loggedIn(HttpSession session) {
+        return session.getAttribute("admin") != null;
+
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)

@@ -28,32 +28,34 @@ public class CustomerController {
     }
 
     @RequestMapping(value="/login", method= RequestMethod.POST)
-    public String login(String username, String password, HttpSession session, Model model){
+    public String login(String username, String password, HttpSession session, Model model, RedirectAttributes ra){
         Customer customer = customerService.getCustomer(username, password);
         // String view =  "redirect:"+PATH + "dashboard";
 
         String view ;
         if(customer==null){
-            model.addAttribute("message","Error on username or password.");
-            view ="redirect:"+PATH + "login";
+            ra.addFlashAttribute("message","User name and password not correct.");
+            view ="redirect:login";
         }
         else {
             session.setAttribute("username", customer.getFirstName());
             session.setAttribute("userId", customer.getId());
             addToSession(session, customer);
-            view="redirect:"+PATH+"/profile/"+customer.getId();
+            view="redirect:/home";
         }
         return view;
     }
 
+    /*
+      Creates a new user
+     */
     @RequestMapping(value="/create", method= RequestMethod.POST)
-    public String register(@Valid Customer customer, HttpSession session, BindingResult result, RedirectAttributes redirect, Model model){
-        String view =  "redirect:"+PATH + "dashboard";
-        if(result.hasErrors()){
+    public String register(@Valid Customer customer, String pass2, HttpSession session,
+                           BindingResult result, RedirectAttributes redirect, Model model){
+        String view =  "redirect:/home";
+        if(result.hasErrors() || !pass2.equals(customer.getPassword())){
             redirect.addFlashAttribute("message","Please correct the following errors.");
-
-            view ="redirect:"+PATH+ "login";
-            return view;
+            view =PATH + "login";
         }
 
         else {
@@ -66,10 +68,9 @@ public class CustomerController {
     }
 
 
-
-    @RequestMapping(value="/dashboard", method= RequestMethod.GET)
+    @RequestMapping(value="/profile", method= RequestMethod.GET)
     public String getLogin(Model model, HttpSession session, RedirectAttributes redirect){
-        String view =  PATH + "info";
+        String view =  PATH + "profile";
         model.addAttribute("customer",(Customer) session.getAttribute("customer"));
         return view;
 
@@ -79,15 +80,15 @@ public class CustomerController {
     public String mypage(@ModelAttribute long id, Model model, RedirectAttributes redirect){
         Customer customer=customerService.findById(id);
         model.addAttribute("customer", customer);
-        return PATH+"myPage";
+        return PATH+"profile";
     }
 
 
-    @RequestMapping(value="/setting/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
     public String profleSetting(@PathVariable Long id, Model model){
         Customer customer=customerService.findById(id);
         model.addAttribute("customer", customer);
-        return PATH+"setting";
+        return PATH+"edit";
     }
 
     @RequestMapping(value="/info", method= RequestMethod.POST)
@@ -96,7 +97,7 @@ public class CustomerController {
         if(result.hasErrors()){
             redirect.addFlashAttribute("message","Please correct the following errors.");
 
-            view ="redirect:"+PATH+ "setting/"+customer.getId();
+            view ="redirect:"+PATH+ "edit/"+customer.getId();
             return view;
         }
 
@@ -145,7 +146,7 @@ public class CustomerController {
         else{
             ra.addFlashAttribute("message","Some informations missing");
             model.addAttribute("message","Some informations missing");
-            return "redirect:"+PATH+ "setting/"+customer.getId();
+            return "redirect:"+PATH+ "edit/"+customer.getId();
         }
 
     }
@@ -154,7 +155,7 @@ public class CustomerController {
     public String logout(HttpSession session, RedirectAttributes redirect){
         session.invalidate();
         redirect.addFlashAttribute("message","Bye bye!. See you again");
-        return "redirect:" + PATH;
+        return "redirect:/home";
     }
 
 

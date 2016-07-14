@@ -20,10 +20,11 @@
                 <div class="tab-pane active" id="login">
                     <img class="profile-img" src="/images/pro-pic.jpg"  alt="" />
                     <form class="form-signin" th:action="@{/customer/login}" method="POST">
+                        <h3 th:text="${message}"/>
                         <label for="username">Email: </label>
-                        <input type="text" name="username" class="form-control" id="username" placeholder="example@abc.com" th:autofocus="autofocus"/>
+                        <input type="text" name="username" class="form-control" required="required" id="username" placeholder="example@abc.com" th:autofocus="autofocus"/>
                         <label for="password">Password: </label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="*********"/>
+                        <input type="password" name="password" class="form-control" required="required" id="password" placeholder="*********"/>
 
                         <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
                     </form>
@@ -35,40 +36,40 @@
                     
                         <h1>Register New User</h1>
                         ​
-                        <form class="form-signup" action="#" th:action="@{/customer/create}" th:object="${customer}" method="post">
+                        <form class="form-signup" action="/customer/create" th:action="@{/customer/create}" th:object="${customer}" method="post">
                             <div class="alert" th:if="${#fields.hasErrors('*')}">
                                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
                             </div>
                             ​
                             <label for="firstName">First Name</label>
-                            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Given Name"/>
+                            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" required="required" placeholder="Given Name"/>
                             <label for="lastName">Last Name</label>
-                            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name"/>
+                            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" required="required" placeholder="Last Name"/>
                             ​
                             <label for="email">Email </label>
-                            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="example@ab.cd"/>
+                            <input type="email" th:field="*{email}" class="form-control" id="email" required="required"  placeholder="example@ab.cd"/>
                             ​
                             <label for="signup-password">Password: </label>
-                            <input type="password" th:field="*{password}" class="form-control" id="signup-password" placeholder="*********"/>
+                            <input type="password" th:field="*{password}" class="form-control"  required="required" id="signup-password" placeholder="*********"/>
                             ​
                             <label for="re-signup-password">Confirm Password: </label>
-                            <input type="password" class="form-control" id="re-signup-password" placeholder="*********"/>
+                            <input type="password" name="pass2" class="form-control" id="re-signup-password" required="required" placeholder="*********"/>
                             ​
                             <!--
                             check two passwords by JS
                             -->
                             ​
                             <label for="city">City</label>
-                            <input type="text" th:field="*{address.city}" class="form-control" id="city" placeholder="City"/>
+                            <input type="text" th:field="*{address.city}" class="form-control" id="city" required="required" placeholder="City"/>
                             ​
                             <label for="city">State</label>
-                            <input type="text" th:field="*{address.state}" class="form-control" id="state" placeholder="State"/>
+                            <input type="text" th:field="*{address.state}" class="form-control" id="state" required="required" placeholder="State"/>
                             ​
                             <label for="street">Street</label>
-                            <input type="text" th:field="*{address.street}" class="form-control" id="street" placeholder="Street"/>
+                            <input type="text" th:field="*{address.street}" class="form-control" id="street" required="required" placeholder="Street"/>
                             ​
                             <label for="zip">ZIP </label>
-                            <input type="text" th:field="*{address.zip}" class="form-control" id="zip" placeholder="ZIP"/>
+                            <input type="text" th:field="*{address.zip}" class="form-control" id="zip" pattern="\d{5}" placeholder="ZIP"/>
                             ​
                             ​
                             <button type="submit" class="submit-register">Get Started</button>

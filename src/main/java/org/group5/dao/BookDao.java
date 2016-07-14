@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -27,6 +28,13 @@ public interface BookDao extends JpaRepository<Book,Long> {
       Set<Book> findFirst2ByOrderByDiscountDesc();
 
       Set<Book> findBookByCategory(Category category);
+
+      //Book List Search
+      @Query("SELECT bk FROM Book bk where bk.name LIKE CONCAT('%',:searchKey,'%') " +
+              "OR bk.isbn LIKE CONCAT('%',:searchKey,'%')" +
+              "OR bk.category.name LIKE CONCAT('%',:searchKey,'%') " +
+              "OR bk.author LIKE CONCAT('%',:searchKey,'%')")
+      List<Book> searchBook(@Param("searchKey") String searchKey);
 
 
 }

@@ -20,18 +20,26 @@
             </section>
         </aside>
         <aside id="right" class="col-md-9">
-            <section class="carousel index" th:replace="/includes/carousel :: carousel">
+            <div th:if="${search == null}">
+                 <section class="carousel index" th:replace="/includes/carousel :: carousel">
+                </section>
+                <section class="banners index" th:replace="/includes/banners :: banners">
 
-            </section>
-            <section class="banners index" th:replace="/includes/banners :: banners">
-
-            </section>
-            <section class="newProducts index" th:replace="/includes/newProducts :: newProducts">
+             </section>
+             <section class="newProducts index" th:replace="/includes/newProducts :: newProducts">
 
             </section>
             <section class="products" th:replace="/includes/products :: products">
+                </section>
+            </div>
 
-            </section>
+            <div th:if="${search == true}">
+                <section class="products" th:replace="displaysearch :: searchresult">
+                </section>
+            </div>
+
+
+
         </aside>
         <div class="clear"></div>
     </main>

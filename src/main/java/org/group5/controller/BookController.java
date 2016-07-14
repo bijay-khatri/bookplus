@@ -1,6 +1,5 @@
 package org.group5.controller;
 
-import org.group5.Utility;
 import org.group5.model.Book;
 import org.group5.model.enums.Status;
 import org.group5.service.BookService;
@@ -9,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
@@ -39,9 +41,15 @@ public class BookController {
     }
 
     @RequestMapping(value="/add", method= RequestMethod.GET)
-    public String addBook(@ModelAttribute Book book, Model model){
+    public String addBook(@ModelAttribute Book book, HttpSession session, Model model){
+        if(!loggedIn(session)) return "redirect:/admin";
         model.addAttribute("categories", categoryService.getAll());
         return "/admin/view/addBook";
+    }
+
+    private boolean loggedIn(HttpSession session) {
+        return session.getAttribute("admin") != null;
+
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
