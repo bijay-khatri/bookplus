@@ -17,7 +17,9 @@
         this.initialize = function(baseurl){
             self.url = baseurl;
             self.loadBooks();
+            self.loadSpecialBooks();
             self.loadCategories();
+            self.loadLatestBooks();
         }
 
 
@@ -39,6 +41,20 @@
                 self.books = data;
                 });
 
+        }
+
+        /***load the specials book ***/
+        this.loadSpecialBooks = function () {
+            $http.get(self.url + "api/book/special").success(function(data) {
+                self.specialbooks = data;
+            });
+        }
+
+        /**load the latestBook ***/
+        this.loadLatestBooks = function () {
+            $http.get(self.url + "api/book/latest").success(function(data) {
+                self.latestbooks = data;
+            });
         }
 
         this.deleteBook = function(id){
