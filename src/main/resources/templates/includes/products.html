@@ -22,11 +22,8 @@
                     Add to cart
                 </a>
             </button>
-        <div data-ng-show="book == null">
-            No Items
-        </div>
-
     </div>
+    <div data-ng-show="bookCtrl.books.length == 0">No Items</div>
 
 </section>
 
