@@ -65,18 +65,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Set<Book> getLastestBook(int limit) {
-        return null;
+    public Set<Book> getLastest6Books() {
+        return bookDao.findFirst6ByOrderByIdDesc();
     }
 
     @Override
-    public Set<Book> getSpecialDiscountedBook(int limit) {
-        return null;
+    public Set<Book> get2SpecialDiscountedBook() {
+        return bookDao.findFirst2ByOrderByDiscountDesc();
     }
 
     @Override
     public Set<Book> getBookByCategory(Category category) {
-        return null;
+        return bookDao.findBookByCategory(category);
     }
 
 
