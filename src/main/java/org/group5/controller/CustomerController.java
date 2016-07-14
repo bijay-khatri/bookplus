@@ -30,7 +30,10 @@ public class CustomerController {
     @RequestMapping(value="/login", method= RequestMethod.POST)
     public String login(String username, String password,HttpSession session){
         Customer customer = customerService.getCustomer(username, password);
-        String view =  "redirect:"+PATH + "dashboard";
+       // String view =  "redirect:"+PATH + "dashboard";
+        String view =  "redirect:/home";
+        session.setAttribute("username",customer.getFirstName());
+        session.setAttribute("userId",customer.getId());
         if(customer == null){
             view ="redirect:"+PATH + "login";
         }

@@ -4,6 +4,7 @@ package org.group5.controller;
 import org.group5.model.*;
 import org.group5.model.enums.PaymentType;
 import org.group5.service.AccountService;
+import org.group5.service.CustomerService;
 import org.group5.service.OrderService;
 import org.group5.service.ProductCopyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class PaymentController {
     private OrderService orderService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private CustomerService customerService;
     @Autowired
     private ProductCopyService cartService;
     private static String PATH = "/payment";
@@ -77,11 +80,11 @@ public class PaymentController {
         Date deliveryDate = addDays(now, 3);
 
 
-        Account account = new Account();
-        Address address = new Address();
-        address.setCity("city");
-        address.setZip("15220");
-        account.setShippingAddress(address);
+        Account account = accountService.findById((long)customerService.findById((long)session.getAttribute("userId")).getAccount().getId());
+        //Address address = new Address();
+      //  address.setCity("city");
+       // address.setZip("15220");
+        account.setShippingAddress(account.getShippingAddress());
         accountService.add(account);
         for (ShoppingCartController.Item item : itemList) {
             OrderLine orderLine = new OrderLine();
