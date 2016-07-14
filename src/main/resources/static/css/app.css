@@ -71,19 +71,19 @@ body .ctnr header nav#navigation .container-fluid{
     padding: 0;
 }
 body .ctnr header nav#navigation #search{
-    width: 40%;
+    width: 41%;
     padding: 0;
     margin: 0;
 }
 body .ctnr header nav#navigation #search .form-group{
-    width: 96%;
+    width: 80%;
 }
 body .ctnr header nav#navigation #search label.search-box{
     font-weight: 200;
     text-transform: uppercase;
 }
 body .ctnr header nav#navigation #search input#search-box{
-    width: 80%;
+    width: 78%;
     margin: 8px;
     border: none;
     padding:0;
@@ -426,4 +426,36 @@ form[class^="form-sign"] input[type="password"]
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+}
+section.profile h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    font-size: 28px;
+}
+section.profile label,
+section.profile input{
+    font-weight: 200;
+    font-size: 16px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+section.profile input{
+    width: 300px;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #d2d2d2;
+    outline: none;
+}
+section.profile button{
+    padding: 10px;
+    width: 100px;
+}
+section.profile form div{
+    width: 100%;
+    float: left;
+    margin: 10px;
+}
+section.products {
+    display: none;
 }

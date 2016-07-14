@@ -5,74 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-<section class="products" th:fragment="newProducts">
+<section class="newProducts index" th:fragment="newProducts" data-ng-controller="BookController as bookCtrl"
+         th:attr="ng-init='bookCtrl.initialize(\''+${@environment.getProperty('project.baseurl')}+'\')'">
     <div class="title">
         <p>New Products</p>
     </div>
-    <div class="product">
+    <div class="product" data-ng-repeat="book in bookCtrl.latestbooks">
         <div class="thumb">
-            <img th:src="@{/images/books/file_27_9.png}" />
+            <img th:src="@{/images/books/{{book.image}}}" />
         </div>
-        <title>Promises in Death (In Death)</title>
-        <p class="price">$42.41></p>
+        <title>{{book.isbn}}</title>
+        <p class="price">{{book.price}}</p>
         <button class="add">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            Add to cart
-        </button>
-    </div>
-    <div class="product">
-        <div class="thumb">
-            <img th:src="@{/images/books/file_27_12.png}" />
-        </div>
-        <title>Promises in Death (In Death)</title>
-        <p class="price">$42.41></p>
-        <button class="add">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            Add to cart
-        </button>
-    </div>
-    <div class="product">
-        <div class="thumb">
-            <img th:src="@{/images/books/file_27_14.png}" />
-        </div>
-        <title>Promises in Death (In Death)</title>
-        <p class="price">$42.41></p>
-        <button class="add">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            Add to cart
-        </button>
-    </div>
-    <div class="product">
-        <div class="thumb">
-            <img th:src="@{/images/books/file_27_16.png}" />
-        </div>
-        <title>Promises in Death (In Death)</title>
-        <p class="price">$42.41></p>
-        <button class="add">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            Add to cart
-        </button>
-    </div>
-    <div class="product">
-        <div class="thumb">
-            <img th:src="@{/images/books/file_27_29.png}" />
-        </div>
-        <title>Promises in Death (In Death)</title>
-        <p class="price">$42.41></p>
-        <button class="add">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            Add to cart
-        </button>
-    </div>
-    <div class="product">
-        <div class="thumb">
-            <img th:src="@{/images/books/file_29_4.png}" />
-        </div>
-        <title>Promises in Death (In Death)</title>
-        <p class="price">$42.41></p>
-        <button class="add">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            Add to cart
+            <a href="/cart/productDetail/{{book.id}}">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                Add to cart
+            </a>
         </button>
     </div>
 </section>

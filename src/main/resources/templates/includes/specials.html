@@ -10,9 +10,9 @@
         <div class="title">
             <p>Special</p>
         </div>
-        <div class="product" data-ng-repeat="book in bookCtrl.books">
+        <div class="product" data-ng-repeat="book in bookCtrl.specialbooks">
             <div class="thumb">
-                <img th:src="@{/images/books/file_27_9.png}" />
+                <img th:src="@{/images/books/{{book.image}}}" />
             </div>
             <title>{{book.isbn}}</title>
             <p class="price">{{book.price}}</p>

@@ -11,11 +11,12 @@
         <p>Products</p>
     </div>
 
-    <div class="product" data-ng-repeat="book in bookCtrl.books">
+    <div class="product" data-ng-repeat="book in bookCtrl.catbooks[0]">
+        <p>{{book.id}}</p>
         <div class="thumb">
-            <img th:src="@{/images/books/file_27_9.png}" />
+            <img th:src="@{/images/books/{{book.image}}}" />
         </div>
-        <title>{{book.isbn}}</title>
+        <title>{{book.name}}</title>
         <p class="price">{{book.price}}</p>
         <button class="add">
             <a href="/cart/productDetail/{{book.id}}">

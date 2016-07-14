@@ -13,38 +13,30 @@
     </header>
     <main>
         <p th:text="${message}"/>
-        <table class="table">
-            <th>S.No</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>State</th>
-            <th>Operations</th>
-
-            <!-- Looping Thymleaf Style -->
-            <!--<tr th:each="category,iterationStatus:${categories}">-->
-                <!--<td th:text="${category.id}"></td>-->
-                <!--<td th:text="${category.name}"></td>-->
-                <!--<td th:text="${category.description}"></td>-->
-
-                <!--<td><a th:href="@{/admin/category/edit/{id}(id=${category.id})}">-->
-                    <!--Edit-->
-                <!--</a>  |-->
-                    <!--<a th:href="@{/admin/category/delete/{id}(id=${category.id})}">-->
-                        <!--Delete-->
-                    <!--</a> </td>-->
-            <!--</tr>-->
-            <tr data-ng-repeat="category in categoryCtrl.categories">
-                <td>{{$index+1}}</td>
-                <td>{{category.name}}</td>
-                <td>{{category.description}}</td>
-                <td>{{category.state}}</td>
-                <td>
+        <div class="media title">
+            <div class="media-body">
+                <div class="col-sm-2">S.No</div>
+                <div cla4s="col-sm-2">Name</div>
+                <div class="col-sm-2">Description</div>
+                <div class="col-sm-2">State</div>
+                <div class="col-sm-2">Operations</div>
+            </div>
+        </div>
+        <div class="media book" data-ng-repeat="category in categoryCtrl.categories">
+            <div class="media-body">
+                <div class="col-sm-2">{{$index+1}}</div>
+                <div class="col-sm-2">{{category.name}}</div>
+                <div class="col-sm-4">{{category.description}}</div>
+                <div class="col-sm-2">{{category.state}}</div>
+                <div class="col-sm-2">
                     <a href="/admin/category/edit/{{category.id}}">Edit</a> |
                     <a href="#" ng-click="categoryCtrl.deleteCategory(category.id)">Delete</a>
-                </td>
-            </tr>
-        </table>
-        </main>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
 </div>
 </body>
 </html>

@@ -61,9 +61,13 @@
         /*** get books by Category Id */
 
         this.getBooksByCategoryId = function (id) {
+            
             $http.get(self.url + "api/book/category/" +id).success(function(data) {
                 self.catbooks = data;
             });
+            console.log(self.catbooks);
+            $("section.index").css("display" ,"none");
+            $("section.products").css("display" ,"block");
         }
 
         this.deleteBook = function(id){

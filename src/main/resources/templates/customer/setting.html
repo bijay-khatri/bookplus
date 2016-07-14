@@ -22,45 +22,72 @@
                     <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
                 </div>
                 ​
-                <label for="firstName">First Name</label>
+                <div>
+                    <label for="firstName">First Name</label>
                 <input type="text" th:field="*{firstName}" class="register-info" id="firstName" th:value="*{firstName}"/>
-                <label for="lastName">Last Name</label>
+
+                </div>
+                <div>
+                    <label for="lastName">Last Name</label>
                 <input type="text" th:field="*{lastName}" class="register-info" id="lastName" th:value="*{lastName}"/>
                 ​
-                <label for="email">Email </label>
+
+                </div>
+                <div>
+                    <label for="email">Email </label>
                 <input type="text" th:field="*{email}" class="register-info" id="email" th:value="*{email}"/>
                 ​
-                <label for="password">Old  Password: </label>
+                </div>
+                <div>
+                    <label for="password">Old  Password: </label>
                 <input type="password" th:field="*{password}" class="register-info" id="password" name="password"/>
                 ​
                 ​
-                <label for="pass1">New Password: </label>
+                </div>
+                <div>
+                    <label for="pass1">New Password: </label>
                 <input type="password"  class="register-info" id="pass1" name="pass1"/>
                 ​
-                <label for="pass2">Confirm New Password: </label>
+                </div>
+                <div>
+                    <label for="pass2">Confirm New Password: </label>
                 <input type="password" class="register-info" id="pass2" name="pass2"/>
-                <label for="city">City</label>
+
+                </div>
+                <div>
+                    <label for="city">City</label>
                 <input type="text" th:field="*{address.city}" class="register-info" id="city" th:value="--"/>
-                <label for="city">State</label>
+
+                </div>
+                <div>
+                    <label for="city">State</label>
                 <input type="text" th:field="*{address.state}" class="register-info" id="state" th:value="*{address.state}"/>
                 ​
-                <label for="street">Street</label>
+                </div>
+                <div>
+                    <label for="street">Street</label>
                 <input type="text" th:field="*{address.street}" class="register-info" id="street" th:value="*{address.street}"/>
                 ​
-                <label for="zip">ZIP </label>
+                </div>
+                <div>
+                    <label for="zip">ZIP </label>
                 <input type="text" th:field="*{address.zip}" class="register-info" id="zip" th:value="*{address.zip}"/>
                 ​
-                ​<input type="hidden" th:field="*{id}"/>
-                <button type="submit" class="submit-register">Update</button>
+                ​</div>
+                <div style="text-align: right">
+                    <input type="hidden" th:field="*{id}"/>
+                    <button type="submit" class="submit-register">Update</button>
+
+                </div>
             </form>
 
 
             <form th:action="@{/customer/deactivate}" method="post">
+                <div>
                 <button type="submit" class="login-btn">Deactivate</button>
+                </div>
             </form>
-
-
-        </section>
+</section>
 
 </body>
 </html>

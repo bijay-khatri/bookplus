@@ -1,5 +1,3 @@
--- The Spring loads this data into db , add your required data seeder below
-
 INSERT INTO Category VALUES (1,'About society and Politics','Society and Politics','');
 INSERT INTO Category VALUES (2,'Description-Category-02','Dreams Unlimited','');
 INSERT INTO Category VALUES  (3,'Description of Object Oriented Programming','Object Oriented Programming','');

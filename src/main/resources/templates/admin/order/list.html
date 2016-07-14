@@ -10,16 +10,18 @@
         <h1>Orders</h1>
     </header>
     <main>
-        <table>
-            <th>Number</th>
-            <th>Delivery Date</th>
-            <th>Sub Total</th>
-            <tr th:each="order,iterationStatus:${OrderDetail}">
-                <td th:text="${order.getId()}"></td>
-                <td th:text="${order.getOrderDate()}"></td>
-                <td th:text="${order.getTotalOrderPrice()}"></td>
-            </tr>
-        </table>
+        <div class="media title">
+            <div class="media-body">
+                <div class="col-sm-4">Number</div>
+                <div class="col-sm-4">Delivery Date</div>
+                <div class="col-sm-4">Sub Total</div>
+            </div>
+        </div>
+        <div class="media book" th:each="order,iterationStatus:${OrderDetail}">
+                <div class="col-sm-4" th:text="${order.getId()}"></div>
+                <div class="col-sm-4" th:text="${order.getOrderDate()}"></div>
+                <div class="col-sm-4" th:text="${order.getTotalOrderPrice()}"></div>
+        </div>
     </main>
 
 </div>

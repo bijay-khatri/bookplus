@@ -16,7 +16,8 @@
             <ul id="menu-content" class="menu-content collapse out">
 
                 <li data-ng-repeat="category in categoryCtrl.categories">
-                    <a href="/category/{{$index+1}}">
+                    <!--/category/{{$index+1}}-->
+                    <a href="#" data-ng-click="categoryCtrl.getBooksByCategoryId(category.id)">
                         <i class="fa fa-user fa-lg"></i> {{category.name}}
                     </a>
                 </li>

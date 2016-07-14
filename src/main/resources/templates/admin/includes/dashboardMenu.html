@@ -22,7 +22,7 @@
         <div class="admin">
             <div class="profilePic"></div>
             <div class="col-xl-7 col-lg-7 col-md-12">
-                <h3>Hi <span>Admin</span></h3>
+                <h3 th:text="${message}"/>
                 <a href="#">Account</a>
                 <a th:href="@{/admin/logout}">Logout</a>
             </div>
