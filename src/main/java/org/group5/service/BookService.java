@@ -21,9 +21,9 @@ public interface BookService {
 
     int getProductCopies(Product p);
 
-    Set<Book> getLastestBook(int limit);
+    Set<Book> getLastest6Books();
 
-    Set<Book> getSpecialDiscountedBook(int limit);
+    Set<Book> get2SpecialDiscountedBook();
 
     Set<Book> getBookByCategory(Category category);
 
